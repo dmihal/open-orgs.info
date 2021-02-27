@@ -4,6 +4,7 @@ import { NextPage, GetStaticProps } from 'next'
 import { getCardanoData } from 'data/cardano'
 import { getCosmosData } from 'data/cosmos'
 import { getEth2Data } from 'data/eth2'
+import { getNanoData } from 'data/nano'
 import { getPolkadotData } from 'data/polkadot'
 import { getTezosData } from 'data/tezos'
 import { IssuanceData } from 'data/types'
@@ -196,6 +197,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getCardanoData().catch(handleFailure),
     getCosmosData().catch(handleFailure),
     getEth2Data().catch(handleFailure),
+    getNanoData().catch(handleFailure),
     getPolkadotData().catch(handleFailure),
     getTezosData().catch(handleFailure),
   ]);

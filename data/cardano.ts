@@ -23,10 +23,9 @@ export async function getCardanoData(): Promise<IssuanceData> {
         }),
   });
   const { data } = await req.json();
-  console.log(data);
 
   return {
-    id: 'ADA',
+    id: 'ada',
     name: 'Cardano',
     category: 'l1',
     sevenDayMA: data.pools.length,

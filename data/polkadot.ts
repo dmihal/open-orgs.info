@@ -19,7 +19,7 @@ export async function getPolkadotData(): Promise<IssuanceData> {
   }
 
   return {
-    id: 'DOT',
+    id: 'polkadot',
     name: 'Polkadot',
     category: 'l1',
     sevenDayMA: numValidators,

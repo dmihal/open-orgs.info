@@ -1,6 +1,6 @@
 import React from 'react'
 import { IssuanceData } from 'data/types'
-// import icons from './icons'
+import icons from './icons'
 
 interface ListProps {
   data: IssuanceData[]
@@ -26,7 +26,7 @@ const List: React.FC<ListProps> = ({ data }) => {
           className={`item ${protocol.category}`}
           key={protocol.id}
           style={{
-            backgroundImage: /*icons[protocol.id] ? `url('${icons[protocol.id]}')` :*/ undefined,
+            backgroundImage: icons[protocol.id] ? `url('${icons[protocol.id]}')` : undefined,
           }}
         >
           <div className="name">{protocol.name}</div>

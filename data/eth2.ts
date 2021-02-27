@@ -9,7 +9,7 @@ export async function getEth2Data(): Promise<IssuanceData> {
   const { data } = await req.json();
 
   return {
-    id: 'Eth2',
+    id: 'eth',
     name: 'Ethereum 2.0',
     category: 'l1',
     sevenDayMA: data.validatorscount,

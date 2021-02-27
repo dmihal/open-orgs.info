@@ -39,6 +39,14 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           content={`https://stakers.info/api/screenshot?${new Date().getDate()}`}
         />
         <meta name="twitter:card" content="summary_large_image" />
+
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4QYE453Z4" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());gtag('config', 'G-N4QYE453Z4');`
+          }}
+        />
       </Head>
 
       <main>

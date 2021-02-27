@@ -5,6 +5,7 @@ import { getCardanoData } from 'data/cardano'
 import { getCosmosData } from 'data/cosmos'
 import { getEth2Data } from 'data/eth2'
 import { getPolkadotData } from 'data/polkadot'
+import { getTezosData } from 'data/tezos'
 import { IssuanceData } from 'data/types'
 import List from 'components/List'
 
@@ -196,6 +197,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getCosmosData().catch(handleFailure),
     getEth2Data().catch(handleFailure),
     getPolkadotData().catch(handleFailure),
+    getTezosData().catch(handleFailure),
   ]);
 
   const data = data2.filter((val: any) => !!val);

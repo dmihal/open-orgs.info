@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { NextPage, GetStaticProps } from 'next'
 import { getCardanoData } from 'data/cardano'
+import { getCosmosData } from 'data/cosmos'
 import { getEth2Data } from 'data/eth2'
 import { getPolkadotData } from 'data/polkadot'
 import { IssuanceData } from 'data/types'
@@ -185,15 +186,16 @@ gtag('js', new Date());gtag('config', 'G-N4QYE453Z4');`
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  // const handleFailure = (e: any) => {
-  //   console.warn(e);
-  //   return null;
-  // };
+  const handleFailure = (e: any) => {
+    console.warn(e);
+    return null;
+  };
 
   const data2 = await Promise.all([
-    getCardanoData(),
-    getEth2Data(),
-    getPolkadotData(),
+    getCardanoData().catch(handleFailure),
+    getCosmosData().catch(handleFailure),
+    getEth2Data().catch(handleFailure),
+    getPolkadotData().catch(handleFailure),
   ]);
 
   const data = data2.filter((val: any) => !!val);

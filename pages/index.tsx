@@ -68,7 +68,6 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
       </main>
 
       <footer>
-        <div>Data updates at midnight, UTC</div>
         <div>
           Created by{' '}
           <a href="https://twitter.com/dmihal" target="twitter">

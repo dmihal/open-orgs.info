@@ -23,7 +23,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         />
 
         <meta property="og:title" content="Stakers.info" />
-        <meta property="og:image" content="https://cryptofees.info/api/screenshot" />
+        <meta property="og:image" content="https://stakers.info/api/screenshot" />
         <meta
           property="og:description"
           content="What's securing your blockchain?"
@@ -36,7 +36,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         />
         <meta
           name="twitter:image"
-          content={`https://cryptofees.info/api/screenshot?${new Date().getDate()}`}
+          content={`https://stakers.info/api/screenshot?${new Date().getDate()}`}
         />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>

@@ -5,7 +5,7 @@ export async function getPolkadotData(): Promise<IssuanceData> {
   let page = 1
 
   while(true) {
-    const req = await fetch(`https://explorer-31.polkascan.io/api/v1/polkadot/account?filter[is_validator]=1&page[number]=${page}&page[size]=100`, {
+    const req = await fetch(`https://explorer-32.polkascan.io/api/v1/polkadot/account?filter[is_validator]=1&page[number]=${page}&page[size]=100`, {
       "headers": {
         "content-type": "application/json",
       },

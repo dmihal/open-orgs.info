@@ -6,6 +6,7 @@ import { getCosmosData } from 'data/cosmos'
 import { getEth2Data } from 'data/eth2'
 import { getNanoData } from 'data/nano'
 import { getPolkadotData } from 'data/polkadot'
+import { getSolanaData } from 'data/solana'
 import { getTezosData } from 'data/tezos'
 import { IssuanceData } from 'data/types'
 import List from 'components/List'
@@ -199,6 +200,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getEth2Data().catch(handleFailure),
     getNanoData().catch(handleFailure),
     getPolkadotData().catch(handleFailure),
+    getSolanaData().catch(handleFailure),
     getTezosData().catch(handleFailure),
   ]);
 

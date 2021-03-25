@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { NextPage, GetStaticProps } from 'next'
+import { getAvalancheData } from 'data/avalanche'
 import { getCardanoData } from 'data/cardano'
 import { getCosmosData } from 'data/cosmos'
 import { getEth2Data } from 'data/eth2'
@@ -195,6 +196,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 
   const data2 = await Promise.all([
+    getAvalancheData().catch(handleFailure),
     getCardanoData().catch(handleFailure),
     getCosmosData().catch(handleFailure),
     getEth2Data().catch(handleFailure),

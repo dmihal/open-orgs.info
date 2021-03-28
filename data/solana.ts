@@ -1,7 +1,7 @@
 import { IssuanceData } from './types'
 
 export async function getSolanaData(): Promise<IssuanceData> {
-  const req = await fetch("https://www.stakingrewards.com/_next/data/9no-Pf-IpoACpldFti6Nk/en/earn/solana/metrics.json?tab=metrics&slug=solana");
+  const req = await fetch("https://www.stakingrewards.com/_next/data/HjhA-CoIXXHgxRyoYd19s/en/earn/solana/metrics.json?tab=metrics&slug=solana");
   const { pageProps } = await req.json();
 
   const stats: any = {};

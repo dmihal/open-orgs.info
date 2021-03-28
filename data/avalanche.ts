@@ -1,7 +1,7 @@
 import { IssuanceData } from './types'
 
 export async function getAvalancheData(): Promise<IssuanceData> {
-  const req = await fetch("https://www.stakingrewards.com/_next/data/9no-Pf-IpoACpldFti6Nk/en/earn/avalanche/metrics.json?tab=metrics&slug=avalanche");
+  const req = await fetch("https://www.stakingrewards.com/_next/data/HjhA-CoIXXHgxRyoYd19s/en/earn/avalanche/metrics.json?tab=metrics&slug=avalanche");
   const { pageProps } = await req.json();
 
   const stats: any = {};

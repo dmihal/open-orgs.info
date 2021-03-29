@@ -21,7 +21,7 @@ const List: React.FC<ListProps> = ({ data }) => {
         </div>
       </div>
 
-      {sortedData.map((protocol: IssuanceData) => (
+      {sortedData.map((protocol: OrganizationData) => (
         <div
           className={`item ${protocol.category}`}
           key={protocol.id}

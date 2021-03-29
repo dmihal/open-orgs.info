@@ -2,6 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import { NextPage, GetStaticProps } from 'next'
 import { getUniswapData } from 'data/adapters/uniswap'
+import { getYearnData } from 'data/adapters/yearn'
+import { getSynthetixData } from 'data/adapters/synthetix'
+import { getSushiData } from 'data/adapters/sushi'
 import { OrganizationData } from 'data/types'
 import List from 'components/List'
 
@@ -184,7 +187,10 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 
   const data2 = await Promise.all([
+    getSushiData().catch(handleFailure),
+    getSynthetixData().catch(handleFailure),
     getUniswapData().catch(handleFailure),
+    getYearnData().catch(handleFailure),
   ]);
 
   const data = data2.filter((val: any) => !!val);

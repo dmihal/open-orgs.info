@@ -1,6 +1,6 @@
 export type Category = 'l1' | 'app' | 'l2'
 
-export interface IssuanceData {
+export interface OrganizationData {
   id: string
   name?: string
   category: Category

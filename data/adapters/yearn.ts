@@ -1,17 +1,15 @@
 import { OrganizationData } from '../types'
-import { TOKENS, getTokenBalance } from '../utils/tokens'
+import { getPortfolio } from '../utils/zerion'
 
-const vestedContract = '0x1a9c8182c09f50c8318d769245bea52c32be35bc';
-const unvestedContract = '0x4750c43867ef5f89869132eccf19b9b6c4286e1a';
+const yearnTreasury = '0xfeb4acf3df3cdea7399794d0869ef76a6efaff52'; // ychad.eth
 
-export async function getUniswapData(): Promise<OrganizationData> {
-  const vestedBalance = await getTokenBalance(TOKENS.UNI, vestedContract);
-  const unvestedBalance = await getTokenBalance(TOKENS.UNI, unvestedContract);
+export async function getYearnData(): Promise<OrganizationData> {
+  const totalValue = await getPortfolio(yearnTreasury)
 
   return {
-    id: 'uniswap',
-    name: 'Uniswap',
+    id: 'yearn',
+    name: 'yEarn',
     category: 'l1',
-    treasury: (vestedBalance + unvestedBalance) * 30,
+    treasury: totalValue,
   };
 }

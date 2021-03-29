@@ -1,40 +1,33 @@
 import React from 'react'
 import Head from 'next/head'
 import { NextPage, GetStaticProps } from 'next'
-import { getAvalancheData } from 'data/avalanche'
-import { getCardanoData } from 'data/cardano'
-import { getCosmosData } from 'data/cosmos'
-import { getEth2Data } from 'data/eth2'
-import { getNanoData } from 'data/nano'
-import { getPolkadotData } from 'data/polkadot'
-import { getSolanaData } from 'data/solana'
-import { getTezosData } from 'data/tezos'
-import { IssuanceData } from 'data/types'
+import { getUniswapData } from 'data/adapters/uniswap'
+import { OrganizationData } from 'data/types'
 import List from 'components/List'
 
 interface HomeProps {
-  data: IssuanceData[]
+  data: OrganizationData[]
 }
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
   return (
     <div className="container">
       <Head>
-        <title>Stakers.info</title>
+        <title>Open-Orgs.info</title>
         <link rel="icon" href="/favicon.png" />
         <link
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap"
           rel="stylesheet"
         />
 
-        <meta property="og:title" content="Stakers.info" />
+        <meta property="og:title" content="Open-Orgs.info" />
         <meta property="og:image" content="https://stakers.info/api/screenshot" />
         <meta
           property="og:description"
           content="What's securing your blockchain?"
         />
 
-        <meta name="twitter:title" content="Stakers.info" />
+        <meta name="twitter:title" content="Open-Orgs.info" />
         <meta
           name="twitter:description"
           content="What's securing your blockchain?"
@@ -49,21 +42,16 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());gtag('config', 'G-N4QYE453Z4');`
+//gtag('js', new Date());gtag('config', 'G-N4QYE453Z4');`
           }}
         />
       </Head>
 
       <main>
-        <h1 className="title">Stakers.info</h1>
+        <h1 className="title">Open-Orgs.info</h1>
 
         <p className="description">
           What's securing your blockchain?
-        </p>
-
-        <p>
-          Like this site?{' '}
-          <a href="https://gitcoin.co/grants/1624/cryptofees-info">Support it on Gitcoin Grants</a>
         </p>
 
         <div>
@@ -196,14 +184,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 
   const data2 = await Promise.all([
-    getAvalancheData().catch(handleFailure),
-    getCardanoData().catch(handleFailure),
-    getCosmosData().catch(handleFailure),
-    getEth2Data().catch(handleFailure),
-    getNanoData().catch(handleFailure),
-    getPolkadotData().catch(handleFailure),
-    getSolanaData().catch(handleFailure),
-    getTezosData().catch(handleFailure),
+    getUniswapData().catch(handleFailure),
   ]);
 
   const data = data2.filter((val: any) => !!val);

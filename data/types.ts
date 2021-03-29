@@ -4,6 +4,5 @@ export interface IssuanceData {
   id: string
   name?: string
   category: Category
-  sevenDayMA: number
-  oneDay: number
+  treasury: number
 }

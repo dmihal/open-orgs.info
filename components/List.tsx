@@ -1,13 +1,13 @@
 import React from 'react'
-import { IssuanceData } from 'data/types'
+import { OrganizationData } from 'data/types'
 import icons from './icons'
 
 interface ListProps {
-  data: IssuanceData[]
+  data: OrganizationData[]
 }
 
 // const sortByDaily = (a: FeeData, b: FeeData) => b.oneDay - a.oneDay
-const sortByWeekly = (a: IssuanceData, b: IssuanceData) => b.sevenDayMA - a.sevenDayMA
+const sortByWeekly = (a: OrganizationData, b: OrganizationData) => b.treasury - a.treasury
 
 const List: React.FC<ListProps> = ({ data }) => {
   const sortedData = data.sort(sortByWeekly)
@@ -17,7 +17,7 @@ const List: React.FC<ListProps> = ({ data }) => {
       <div className="header">
         <div className="name">Name</div>
         <div className="amount">
-          Number of Validators
+          Treasury
         </div>
       </div>
 
@@ -31,7 +31,10 @@ const List: React.FC<ListProps> = ({ data }) => {
         >
           <div className="name">{protocol.name}</div>
           <div className="amount">
-            {protocol.sevenDayMA.toLocaleString('en-US')}
+            {protocol.treasury.toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            })}
           </div>
         </div>
       ))}

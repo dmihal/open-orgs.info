@@ -27,6 +27,7 @@ const assetsSocket = {
     // @ts-ignore
     extraHeaders: {
       HTTP_ORIGIN: 'http://localhost:3000',
+      // Origin: 'https://app.zerion.io',
     }
   }),
 }
@@ -54,7 +55,7 @@ export async function getPortfolio(address: string): Promise<number> {
   const portfolio: any = await get(assetsSocket, {
     scope: ['portfolio'],
     payload: {
-      address,
+      address: address.toLowerCase(),
       currency: 'usd',
       // offset: 0,
       // limit: 20,

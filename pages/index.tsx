@@ -1,10 +1,14 @@
 import React from 'react'
 import Head from 'next/head'
 import { NextPage, GetStaticProps } from 'next'
+import { getAaveData } from 'data/adapters/aave'
+import { getBadgerData } from 'data/adapters/badger'
+import { getCompoundData } from 'data/adapters/compound'
 import { getUniswapData } from 'data/adapters/uniswap'
-import { getYearnData } from 'data/adapters/yearn'
 import { getSynthetixData } from 'data/adapters/synthetix'
 import { getSushiData } from 'data/adapters/sushi'
+import { getYamData } from 'data/adapters/yam'
+import { getYearnData } from 'data/adapters/yearn'
 import { OrganizationData } from 'data/types'
 import List from 'components/List'
 
@@ -187,10 +191,14 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 
   const data2 = await Promise.all([
+    getAaveData().catch(handleFailure),
+    getBadgerData().catch(handleFailure),
+    getCompoundData().catch(handleFailure),
     getSushiData().catch(handleFailure),
     getSynthetixData().catch(handleFailure),
     getUniswapData().catch(handleFailure),
     getYearnData().catch(handleFailure),
+    getYamData().catch(handleFailure),
   ]);
 
   const data = data2.filter((val: any) => !!val);

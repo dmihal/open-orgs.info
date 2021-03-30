@@ -28,20 +28,20 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         />
 
         <meta property="og:title" content="Open-Orgs.info" />
-        <meta property="og:image" content="https://stakers.info/api/screenshot" />
+        <meta property="og:image" content="https://open-orgs.info/api/screenshot" />
         <meta
           property="og:description"
-          content="What's securing your blockchain?"
+          content="DAOs are the new companies. What's on their balance sheet?"
         />
 
         <meta name="twitter:title" content="Open-Orgs.info" />
         <meta
           name="twitter:description"
-          content="What's securing your blockchain?"
+          content="DAOs are the new companies. What's on their balance sheet?"
         />
         <meta
           name="twitter:image"
-          content={`https://stakers.info/api/screenshot?${new Date().getDate()}`}
+          content={`https://open-orgs.info/api/screenshot?${new Date().getDate()}`}
         />
         <meta name="twitter:card" content="summary_large_image" />
 
@@ -58,7 +58,8 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         <h1 className="title">Open-Orgs.info</h1>
 
         <p className="description">
-          What's securing your blockchain?
+          DAOs are the new companies.<br />
+          What's on their balance sheet?
         </p>
 
         <div>
@@ -95,7 +96,9 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           {' | '}
           <a href="https://money-movers.info">money-movers.info</a>
           {' | '}
-          <b>stakers.info</b>
+          <a href="https://stakers.info">stakers.info</a>
+          {' | '}
+          <b>open-orgs.info</b>
         </div>
       </footer>
 

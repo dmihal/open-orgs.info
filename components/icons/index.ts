@@ -1,21 +1,21 @@
-import ada from './ada.svg'
-import avalanche from './avalanche.svg'
-import cosmos from './cosmos.svg'
-import eth from './eth.svg';
-import nano from './nano.svg';
-import polkadot from './polkadot.svg';
-import solana from './solana.svg';
-import xtz from './xtz.svg';
+import aave from './aave.svg';
+import badger from './badger.png';
+import compound from './compound.svg';
+import uniswap from './uni_v2.png';
+import sushi from './sushiswap.svg';
+import synthetix from './synthetix.svg';
+import yearn from './yearn.svg';
+import yam from './yam.png';
 
 const icons: { [id: string]: string } = {
-  ada,
-  avalanche,
-  eth,
-  nano,
-  polkadot,
-  cosmos,
-  solana,
-  xtz,
+  aave,
+  badger,
+  compound,
+  sushi,
+  synthetix,
+  uniswap,
+  yearn,
+  yam,
 }
 
 export default icons;

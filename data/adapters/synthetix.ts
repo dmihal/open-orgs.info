@@ -9,7 +9,7 @@ export async function getSynthetixData(): Promise<OrganizationData> {
   const snxDAOTreasury = await getPortfolio(synthetixDAO)
 
   return {
-    id: 'snx',
+    id: 'synthetix',
     name: 'Synthetix',
     category: 'l1',
     treasury: grantsDAOTreasury + snxDAOTreasury,

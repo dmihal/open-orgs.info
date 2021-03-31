@@ -49,7 +49,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
-//gtag('js', new Date());gtag('config', 'G-N4QYE453Z4');`
+gtag('js', new Date());gtag('config', 'G-MB00YK06P7');`
           }}
         />
       </Head>

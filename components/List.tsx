@@ -34,6 +34,8 @@ const List: React.FC<ListProps> = ({ data }) => {
             {protocol.treasury.toLocaleString('en-US', {
               style: 'currency',
               currency: 'USD',
+              maximumFractionDigits: 0,
+              minimumFractionDigits: 0,
             })}
           </div>
         </div>

@@ -31,13 +31,13 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         <meta property="og:image" content="https://open-orgs.info/api/screenshot" />
         <meta
           property="og:description"
-          content="DAOs are the new companies. What's on their balance sheet?"
+          content="DAOs are the new companies. What's on their balance sheets?"
         />
 
         <meta name="twitter:title" content="Open-Orgs.info" />
         <meta
           name="twitter:description"
-          content="DAOs are the new companies. What's on their balance sheet?"
+          content="DAOs are the new companies. What's on their balance sheets?"
         />
         <meta
           name="twitter:image"
@@ -59,7 +59,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 
         <p className="description">
           DAOs are the new companies.<br />
-          What's on their balance sheet?
+          What's on their balance sheets?
         </p>
 
         <div>

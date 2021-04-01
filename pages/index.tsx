@@ -5,9 +5,10 @@ import { getAaveData } from 'data/adapters/aave'
 import { getBadgerData } from 'data/adapters/badger'
 import { getCompoundData } from 'data/adapters/compound'
 import { getMakerDAOData } from 'data/adapters/makerdao'
-import { getUniswapData } from 'data/adapters/uniswap'
 import { getSynthetixData } from 'data/adapters/synthetix'
 import { getSushiData } from 'data/adapters/sushi'
+import { getUniswapData } from 'data/adapters/uniswap'
+import { getTornadoData } from 'data/adapters/tornado'
 import { getYamData } from 'data/adapters/yam'
 import { getYearnData } from 'data/adapters/yearn'
 import { OrganizationData } from 'data/types'
@@ -201,6 +202,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getMakerDAOData().catch(handleFailure),
     getSushiData().catch(handleFailure),
     getSynthetixData().catch(handleFailure),
+    getTornadoData().catch(handleFailure),
     getUniswapData().catch(handleFailure),
     getYearnData().catch(handleFailure),
     getYamData().catch(handleFailure),

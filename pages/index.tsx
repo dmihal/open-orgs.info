@@ -4,6 +4,7 @@ import { NextPage, GetStaticProps } from 'next'
 import { getAaveData } from 'data/adapters/aave'
 import { getBadgerData } from 'data/adapters/badger'
 import { getCompoundData } from 'data/adapters/compound'
+import { getMakerDAOData } from 'data/adapters/makerdao'
 import { getUniswapData } from 'data/adapters/uniswap'
 import { getSynthetixData } from 'data/adapters/synthetix'
 import { getSushiData } from 'data/adapters/sushi'
@@ -197,6 +198,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getAaveData().catch(handleFailure),
     getBadgerData().catch(handleFailure),
     getCompoundData().catch(handleFailure),
+    getMakerDAOData().catch(handleFailure),
     getSushiData().catch(handleFailure),
     getSynthetixData().catch(handleFailure),
     getUniswapData().catch(handleFailure),

@@ -1,4 +1,5 @@
 import aave from './aave.svg';
+import alchemix from './alchemix.jpg';
 import badger from './badger.png';
 import compound from './compound.svg';
 import dxdao from './dxdao.jpg';
@@ -12,6 +13,7 @@ import yam from './yam.png';
 
 const icons: { [id: string]: string } = {
   aave,
+  alchemix,
   badger,
   compound,
   dxdao,

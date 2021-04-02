@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import { NextPage, GetStaticProps } from 'next'
 import { getAaveData } from 'data/adapters/aave'
+import { getAlchemixData } from 'data/adapters/alchemix'
 import { getBadgerData } from 'data/adapters/badger'
 import { getCompoundData } from 'data/adapters/compound'
 import { getDXDAOData } from 'data/adapters/dxdao'
@@ -198,6 +199,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const data2 = await Promise.all([
     getAaveData().catch(handleFailure),
+    getAlchemixData().catch(handleFailure),
     getBadgerData().catch(handleFailure),
     getCompoundData().catch(handleFailure),
     getDXDAOData().catch(handleFailure),

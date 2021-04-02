@@ -7,6 +7,7 @@ import { getAPI3Data } from 'data/adapters/api3'
 import { getBadgerData } from 'data/adapters/badger'
 import { getCompoundData } from 'data/adapters/compound'
 import { getDXDAOData } from 'data/adapters/dxdao'
+import { getLinkswapData } from 'data/adapters/linkswap'
 import { getMakerDAOData } from 'data/adapters/makerdao'
 import { getNexusData } from 'data/adapters/nexus'
 import { getSynthetixData } from 'data/adapters/synthetix'
@@ -206,6 +207,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getBadgerData().catch(handleFailure),
     getCompoundData().catch(handleFailure),
     getDXDAOData().catch(handleFailure),
+    getLinkswapData().catch(handleFailure),
     getMakerDAOData().catch(handleFailure),
     getNexusData().catch(handleFailure),
     getSushiData().catch(handleFailure),

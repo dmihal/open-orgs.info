@@ -4,6 +4,7 @@ import alchemix from './alchemix.jpg';
 import badger from './badger.png';
 import compound from './compound.svg';
 import dxdao from './dxdao.jpg';
+import linkswap from './linkswap.png';
 import makerdao from './makerdao.svg';
 import nexus from './nexus.svg';
 import sushi from './sushiswap.svg';
@@ -20,6 +21,7 @@ const icons: { [id: string]: string } = {
   badger,
   compound,
   dxdao,
+  linkswap,
   makerdao,
   nexus,
   sushi,

@@ -1,6 +1,7 @@
 import aave from './aave.svg';
 import badger from './badger.png';
 import compound from './compound.svg';
+import dxdao from './dxdao.jpg';
 import makerdao from './makerdao.svg';
 import sushi from './sushiswap.svg';
 import synthetix from './synthetix.svg';
@@ -13,6 +14,7 @@ const icons: { [id: string]: string } = {
   aave,
   badger,
   compound,
+  dxdao,
   makerdao,
   sushi,
   synthetix,

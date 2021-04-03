@@ -2,6 +2,7 @@ import aave from './aave.svg';
 import api3 from './api3.jpg';
 import alchemix from './alchemix.jpg';
 import badger from './badger.png';
+import balancer from './balancer.svg';
 import compound from './compound.svg';
 import dxdao from './dxdao.jpg';
 import index from './index.png';
@@ -19,6 +20,7 @@ const icons: { [id: string]: string } = {
   api3,
   alchemix,
   badger,
+  balancer,
   compound,
   dxdao,
   index,

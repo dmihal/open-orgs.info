@@ -5,6 +5,7 @@ import { getAaveData } from 'data/adapters/aave'
 import { getAlchemixData } from 'data/adapters/alchemix'
 import { getAPI3Data } from 'data/adapters/api3'
 import { getBadgerData } from 'data/adapters/badger'
+import { getBalancerData } from 'data/adapters/balancer'
 import { getCompoundData } from 'data/adapters/compound'
 import { getDXDAOData } from 'data/adapters/dxdao'
 import { getIndexData } from 'data/adapters/index'
@@ -205,6 +206,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getAlchemixData().catch(handleFailure),
     getAPI3Data().catch(handleFailure),
     getBadgerData().catch(handleFailure),
+    getBalancerData().catch(handleFailure),
     getCompoundData().catch(handleFailure),
     getDXDAOData().catch(handleFailure),
     getIndexData().catch(handleFailure),

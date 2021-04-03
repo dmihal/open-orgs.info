@@ -2,6 +2,7 @@ import aave from './aave.svg';
 import api3 from './api3.jpg';
 import alchemix from './alchemix.jpg';
 import badger from './badger.png';
+import barnbridge from './barnbridge.svg';
 import compound from './compound.svg';
 import dxdao from './dxdao.jpg';
 import makerdao from './makerdao.svg';
@@ -18,6 +19,7 @@ const icons: { [id: string]: string } = {
   api3,
   alchemix,
   badger,
+  barnbridge,
   compound,
   dxdao,
   makerdao,

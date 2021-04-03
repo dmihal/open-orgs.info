@@ -5,6 +5,7 @@ import { getAaveData } from 'data/adapters/aave'
 import { getAlchemixData } from 'data/adapters/alchemix'
 import { getAPI3Data } from 'data/adapters/api3'
 import { getBadgerData } from 'data/adapters/badger'
+import { getBarnBridgeData } from 'data/adapters/barnbridge'
 import { getCompoundData } from 'data/adapters/compound'
 import { getDXDAOData } from 'data/adapters/dxdao'
 import { getMakerDAOData } from 'data/adapters/makerdao'
@@ -204,6 +205,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getAlchemixData().catch(handleFailure),
     getAPI3Data().catch(handleFailure),
     getBadgerData().catch(handleFailure),
+    getBarnBridgeData().catch(handleFailure),
     getCompoundData().catch(handleFailure),
     getDXDAOData().catch(handleFailure),
     getMakerDAOData().catch(handleFailure),

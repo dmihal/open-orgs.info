@@ -3,6 +3,7 @@ import api3 from './api3.jpg';
 import alchemix from './alchemix.jpg';
 import badger from './badger.png';
 import compound from './compound.svg';
+import dg from './dg.png';
 import dxdao from './dxdao.jpg';
 import index from './index.png';
 import makerdao from './makerdao.svg';
@@ -20,6 +21,7 @@ const icons: { [id: string]: string } = {
   alchemix,
   badger,
   compound,
+  dg,
   dxdao,
   index,
   makerdao,

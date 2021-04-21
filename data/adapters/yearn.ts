@@ -8,7 +8,7 @@ export async function getYearnData(): Promise<OrganizationData> {
 
   return {
     id: 'yearn',
-    name: 'yEarn',
+    name: 'Yearn',
     category: 'l1',
     treasury: totalValue,
   };

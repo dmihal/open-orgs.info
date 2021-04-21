@@ -6,9 +6,12 @@ import { getAlchemixData } from 'data/adapters/alchemix'
 import { getAPI3Data } from 'data/adapters/api3'
 import { getBadgerData } from 'data/adapters/badger'
 import { getBalancerData } from 'data/adapters/balancer'
+import { getBarnBridgeData } from 'data/adapters/barnbridge'
 import { getCompoundData } from 'data/adapters/compound'
 import { getDXDAOData } from 'data/adapters/dxdao'
+import { getDGData } from 'data/adapters/decentralgames'
 import { getIndexData } from 'data/adapters/index'
+import { getLinkswapData } from 'data/adapters/linkswap'
 import { getMakerDAOData } from 'data/adapters/makerdao'
 import { getNexusData } from 'data/adapters/nexus'
 import { getSynthetixData } from 'data/adapters/synthetix'
@@ -207,9 +210,12 @@ export const getStaticProps: GetStaticProps = async () => {
     getAPI3Data().catch(handleFailure),
     getBadgerData().catch(handleFailure),
     getBalancerData().catch(handleFailure),
+    getBarnBridgeData().catch(handleFailure),
     getCompoundData().catch(handleFailure),
+    getDGData().catch(handleFailure),
     getDXDAOData().catch(handleFailure),
     getIndexData().catch(handleFailure),
+    getLinkswapData().catch(handleFailure),
     getMakerDAOData().catch(handleFailure),
     getNexusData().catch(handleFailure),
     getSushiData().catch(handleFailure),

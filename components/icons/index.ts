@@ -2,8 +2,11 @@ import aave from './aave.svg';
 import api3 from './api3.jpg';
 import alchemix from './alchemix.jpg';
 import badger from './badger.png';
+import barnbridge from './barnbridge.svg';
 import compound from './compound.svg';
+import dg from './dg.png';
 import dxdao from './dxdao.jpg';
+import index from './index.png';
 import linkswap from './linkswap.png';
 import makerdao from './makerdao.svg';
 import nexus from './nexus.svg';
@@ -19,8 +22,11 @@ const icons: { [id: string]: string } = {
   api3,
   alchemix,
   badger,
+  barnbridge,
   compound,
+  dg,
   dxdao,
+  index,
   linkswap,
   makerdao,
   nexus,

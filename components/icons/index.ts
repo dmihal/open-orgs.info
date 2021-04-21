@@ -7,6 +7,7 @@ import compound from './compound.svg';
 import dg from './dg.png';
 import dxdao from './dxdao.jpg';
 import index from './index.png';
+import linkswap from './linkswap.png';
 import makerdao from './makerdao.svg';
 import nexus from './nexus.svg';
 import sushi from './sushiswap.svg';
@@ -26,6 +27,7 @@ const icons: { [id: string]: string } = {
   dg,
   dxdao,
   index,
+  linkswap,
   makerdao,
   nexus,
   sushi,

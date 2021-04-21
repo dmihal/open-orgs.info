@@ -10,6 +10,7 @@ import { getCompoundData } from 'data/adapters/compound'
 import { getDXDAOData } from 'data/adapters/dxdao'
 import { getDGData } from 'data/adapters/decentralgames'
 import { getIndexData } from 'data/adapters/index'
+import { getLinkswapData } from 'data/adapters/linkswap'
 import { getMakerDAOData } from 'data/adapters/makerdao'
 import { getNexusData } from 'data/adapters/nexus'
 import { getSynthetixData } from 'data/adapters/synthetix'
@@ -212,6 +213,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getDGData().catch(handleFailure),
     getDXDAOData().catch(handleFailure),
     getIndexData().catch(handleFailure),
+    getLinkswapData().catch(handleFailure),
     getMakerDAOData().catch(handleFailure),
     getNexusData().catch(handleFailure),
     getSushiData().catch(handleFailure),

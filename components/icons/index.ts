@@ -17,6 +17,7 @@ import tornado from './tornado.svg';
 import uniswap from './uni_v2.png';
 import yearn from './yearn.svg';
 import yam from './yam.png';
+import hakka from './hakka.png';
 
 const icons: { [id: string]: string } = {
   aave,
@@ -38,6 +39,7 @@ const icons: { [id: string]: string } = {
   uniswap,
   yearn,
   yam,
+  hakka,
 }
 
 export default icons;

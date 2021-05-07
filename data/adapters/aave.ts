@@ -10,7 +10,6 @@ export async function getAaveData(): Promise<OrganizationData> {
 
   // The revenue collector has too many txs to be supported by Zerion
   const revenueCollectorTreasury = await getEthplorerPortfolio(revenueCollector)
-  console.log(revenueCollectorTreasury)
 
   return {
     id: 'aave',

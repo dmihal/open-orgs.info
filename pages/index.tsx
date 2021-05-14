@@ -8,6 +8,7 @@ import { getBadgerData } from 'data/adapters/badger'
 import { getBalancerData } from 'data/adapters/balancer'
 import { getBarnBridgeData } from 'data/adapters/barnbridge'
 import { getCompoundData } from 'data/adapters/compound'
+import { getCurveData } from 'data/adapters/curve'
 import { getDXDAOData } from 'data/adapters/dxdao'
 import { getDGData } from 'data/adapters/decentralgames'
 import { getIndexData } from 'data/adapters/index'
@@ -212,6 +213,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getBalancerData().catch(handleFailure),
     getBarnBridgeData().catch(handleFailure),
     getCompoundData().catch(handleFailure),
+    getCurveData().catch(handleFailure),
     // getDGData().catch(handleFailure),
     getDXDAOData().catch(handleFailure),
     getIndexData().catch(handleFailure),

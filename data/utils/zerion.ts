@@ -64,19 +64,3 @@ export async function getPortfolio(address: string): Promise<number> {
 
   return portfolio.payload.portfolio.total_value
 }
-
-export async function getDGTreasury() {
-  const request = await fetch(
-    `https://api.decentral.games/admin/getTreasuryBalanceHistory/week?`,
-    {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }
-  );
-
-  const json = await request.json()
-  return json.totalBalanceUSD.graph.slice(-1)[0].secondary
-}

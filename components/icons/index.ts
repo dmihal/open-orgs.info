@@ -5,6 +5,7 @@ import badger from './badger.png';
 import balancer from './balancer.svg';
 import barnbridge from './barnbridge.svg';
 import compound from './compound.svg';
+import curve from './curve.png';
 import dg from './dg.png';
 import dxdao from './dxdao.jpg';
 import index from './index.png';
@@ -26,6 +27,7 @@ const icons: { [id: string]: string } = {
   balancer,
   barnbridge,
   compound,
+  curve,
   dg,
   dxdao,
   index,

@@ -211,7 +211,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getBalancerData().catch(handleFailure),
     getBarnBridgeData().catch(handleFailure),
     getCompoundData().catch(handleFailure),
-    // getDGData().catch(handleFailure),
+    getDGData().catch(handleFailure),
     getDXDAOData().catch(handleFailure),
     getIndexData().catch(handleFailure),
     getLinkswapData().catch(handleFailure),

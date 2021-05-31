@@ -1,17 +1,28 @@
 import { OrganizationData } from '../types'
-import { getPortfolio } from '../utils/zerion'
 
-const land = '0x7146cae915f1cd90871ecc69999beffdcaf38ff9';
-const treasury = '0x7a61a0ed364e599ae4748d1ebe74bf236dd27b09';
+export async function getDGTreasury() {
+  const request = await fetch(
+    `https://api.decentral.games/admin/getTreasuryBalanceHistory/week?`,
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+
+  const json = await request.json()
+  return json.totalBalanceUSD.graph.slice(-1)[0].secondary
+}
 
 export async function getDGData(): Promise<OrganizationData> {
-  const treasuryValue = await getPortfolio(treasury)
-  const landValue = await getPortfolio(land)
+  const treasuryValue = await getDGTreasury()
 
   return {
     id: 'dg',
     name: 'Decentral Games',
     category: 'l1',
-    treasury: treasuryValue + landValue,
+    treasury: treasuryValue,
   };
 }

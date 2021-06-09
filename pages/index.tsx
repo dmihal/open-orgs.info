@@ -20,6 +20,7 @@ import { getUniswapData } from 'data/adapters/uniswap'
 import { getTornadoData } from 'data/adapters/tornado'
 import { getYamData } from 'data/adapters/yam'
 import { getYearnData } from 'data/adapters/yearn'
+import { getHakkaData } from 'data/adapters/hakka'
 import { OrganizationData } from 'data/types'
 import List from 'components/List'
 
@@ -224,6 +225,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getUniswapData().catch(handleFailure),
     getYearnData().catch(handleFailure),
     getYamData().catch(handleFailure),
+    getHakkaData().catch(handleFailure),
   ]);
 
   const data = data2.filter((val: any) => !!val);

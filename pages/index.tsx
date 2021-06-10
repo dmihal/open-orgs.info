@@ -13,6 +13,7 @@ import { getDXDAOData } from 'data/adapters/dxdao'
 import { getIndexData } from 'data/adapters/index'
 import { getLinkswapData } from 'data/adapters/linkswap'
 import { getMakerDAOData } from 'data/adapters/makerdao'
+import { getMstableData } from 'data/adapters/mstable'
 import { getNexusData } from 'data/adapters/nexus'
 import { getSynthetixData } from 'data/adapters/synthetix'
 import { getSushiData } from 'data/adapters/sushi'
@@ -217,6 +218,7 @@ export const getStaticProps: GetStaticProps = async () => {
     getIndexData().catch(handleFailure),
     getLinkswapData().catch(handleFailure),
     getMakerDAOData().catch(handleFailure),
+    getMstableData().catch(handleFailure),
     getNexusData().catch(handleFailure),
     getSushiData().catch(handleFailure),
     getSynthetixData().catch(handleFailure),

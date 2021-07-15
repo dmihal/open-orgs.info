@@ -10,6 +10,7 @@ import dxdao from './dxdao.jpg';
 import index from './index.png';
 import linkswap from './linkswap.png';
 import makerdao from './makerdao.svg';
+import mstable from './mstable.svg';
 import nexus from './nexus.svg';
 import sushi from './sushiswap.svg';
 import synthetix from './synthetix.svg';
@@ -31,6 +32,7 @@ const icons: { [id: string]: string } = {
   index,
   linkswap,
   makerdao,
+  mstable,
   nexus,
   sushi,
   synthetix,

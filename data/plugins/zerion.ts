@@ -51,16 +51,18 @@ function get(socketNamespace: any, requestBody: any) {
   })
 }
 
-export async function getPortfolio(address: string): Promise<number> {
-  const portfolio: any = await get(assetsSocket, {
-    scope: ['portfolio'],
-    payload: {
-      address: address.toLowerCase(),
-      currency: 'usd',
-      // offset: 0,
-      // limit: 20,
-    },
-  })
+export class Zerion {
+  async getPortfolio(address: string): Promise<number> {
+    const portfolio: any = await get(assetsSocket, {
+      scope: ['portfolio'],
+      payload: {
+        address: address.toLowerCase(),
+        currency: 'usd',
+        // offset: 0,
+        // limit: 20,
+      },
+    })
 
-  return portfolio.payload.portfolio.total_value
+    return portfolio.payload.portfolio.total_value
+  }
 }

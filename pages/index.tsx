@@ -1,31 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
 import { NextPage, GetStaticProps } from 'next'
-import { getAaveData } from 'data/adapters/aave'
-import { getAlchemixData } from 'data/adapters/alchemix'
-import { getAPI3Data } from 'data/adapters/api3'
-import { getBadgerData } from 'data/adapters/badger'
-import { getBalancerData } from 'data/adapters/balancer'
-import { getBarnBridgeData } from 'data/adapters/barnbridge'
-import { getCompoundData } from 'data/adapters/compound'
-import { getDGData } from 'data/adapters/decentralgames'
-import { getDXDAOData } from 'data/adapters/dxdao'
-import { getIndexData } from 'data/adapters/index'
-import { getLinkswapData } from 'data/adapters/linkswap'
-import { getMakerDAOData } from 'data/adapters/makerdao'
-import { getMstableData } from 'data/adapters/mstable'
-import { getNexusData } from 'data/adapters/nexus'
-import { getSynthetixData } from 'data/adapters/synthetix'
-import { getSushiData } from 'data/adapters/sushi'
-import { getUniswapData } from 'data/adapters/uniswap'
-import { getTornadoData } from 'data/adapters/tornado'
-import { getYamData } from 'data/adapters/yam'
-import { getYearnData } from 'data/adapters/yearn'
-import { OrganizationData } from 'data/types'
+import 'data/adapters'
+import sdk from 'data/sdk'
 import List from 'components/List'
 
 interface HomeProps {
-  data: OrganizationData[]
+  data: any[]
 }
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
@@ -200,37 +181,12 @@ gtag('js', new Date());gtag('config', 'G-MB00YK06P7');`
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const handleFailure = (e: any) => {
-    console.warn(e);
-    return null;
-  };
+  const list = sdk.getList('treasuries')
 
-  const data2 = await Promise.all([
-    getAaveData().catch(handleFailure),
-    getAlchemixData().catch(handleFailure),
-    getAPI3Data().catch(handleFailure),
-    getBadgerData().catch(handleFailure),
-    getBalancerData().catch(handleFailure),
-    getBarnBridgeData().catch(handleFailure),
-    getCompoundData().catch(handleFailure),
-    getDGData().catch(handleFailure),
-    getDXDAOData().catch(handleFailure),
-    getIndexData().catch(handleFailure),
-    getLinkswapData().catch(handleFailure),
-    getMakerDAOData().catch(handleFailure),
-    getMstableData().catch(handleFailure),
-    getNexusData().catch(handleFailure),
-    getSushiData().catch(handleFailure),
-    getSynthetixData().catch(handleFailure),
-    getTornadoData().catch(handleFailure),
-    getUniswapData().catch(handleFailure),
-    getYearnData().catch(handleFailure),
-    getYamData().catch(handleFailure),
-  ]);
-
-  const data = data2.filter((val: any) => !!val);
+  const data = await list.executeQueriesWithMetadata(['currentTreasuryUSD'])
 
   return { props: { data }, revalidate: 60 };
 };
+
 
 export default Home;

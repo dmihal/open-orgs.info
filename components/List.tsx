@@ -1,13 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Row from './Row';
 
 interface ListProps {
-  data: any[]
+  data: any[];
 }
 
-const sortByWeekly = (a: any, b: any) => b.results.currentTreasuryUSD - a.results.currentTreasuryUSD
-
 const List: React.FC<ListProps> = ({ data }) => {
-  const sortedData = data.sort(sortByWeekly)
+  const sortedData = data.sort((a: any, b: any) => b.results.currentTreasuryUSD - a.results.currentTreasuryUSD);
 
   return (
     <div className="list">
@@ -19,23 +18,7 @@ const List: React.FC<ListProps> = ({ data }) => {
       </div>
 
       {sortedData.map((protocol: any) => (
-        <div
-          className={`item ${protocol.category}`}
-          key={protocol.id}
-          style={{
-            backgroundImage: protocol.metadata.icon && `url('${protocol.metadata.icon}')`,
-          }}
-        >
-          <div className="name">{protocol.metadata.name}</div>
-          <div className="amount">
-            {protocol.results.currentTreasuryUSD.toLocaleString('en-US', {
-              style: 'currency',
-              currency: 'USD',
-              maximumFractionDigits: 0,
-              minimumFractionDigits: 0,
-            })}
-          </div>
-        </div>
+        <Row protocol={protocol} key={protocol.id} />
       ))}
 
       <style jsx>{`
@@ -44,6 +27,8 @@ const List: React.FC<ListProps> = ({ data }) => {
           border-radius: 0px;
           overflow: hidden;
           margin: 4px;
+          max-width: 700px;
+          width: 100%;
         }
 
         .header {
@@ -85,13 +70,14 @@ const List: React.FC<ListProps> = ({ data }) => {
         }
 
         .amount {
-          min-width: 250px;
+          min-width: 200px;
           text-align: right;
         }
 
         @media (max-width: 700px) {
           .header {
-            padding-left: 30px;
+            padding-left: 28px;
+            padding-right: 30px;
           }
           .header > div {
             font-size: 14px;
@@ -99,14 +85,18 @@ const List: React.FC<ListProps> = ({ data }) => {
 
           .amount {
             font-size: 16px;
-            min-width: 130px;
+            min-width: 110px;
           }
           .name {
             font-size: 14px;
           }
+          .g {
+            display: none;
+          }
 
           .item {
             padding-left: 30px;
+            padding-right: 0;
             background-position: 6px center;
           }
 
@@ -120,4 +110,4 @@ const List: React.FC<ListProps> = ({ data }) => {
   );
 };
 
-export default List
+export default List;

@@ -1,5 +1,4 @@
 import React from 'react'
-import Head from 'next/head'
 import { NextPage, GetStaticProps } from 'next'
 import 'data/adapters'
 import sdk from 'data/sdk'
@@ -12,41 +11,6 @@ interface HomeProps {
 export const Home: NextPage<HomeProps> = ({ data }) => {
   return (
     <div className="container">
-      <Head>
-        <title>Open-Orgs.info</title>
-        <link rel="icon" href="/favicon.png" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
-
-        <meta property="og:title" content="Open-Orgs.info" />
-        <meta property="og:image" content="https://open-orgs.info/api/screenshot" />
-        <meta
-          property="og:description"
-          content="DAOs are the new companies. What's on their balance sheets?"
-        />
-
-        <meta name="twitter:title" content="Open-Orgs.info" />
-        <meta
-          name="twitter:description"
-          content="DAOs are the new companies. What's on their balance sheets?"
-        />
-        <meta
-          name="twitter:image"
-          content={`https://open-orgs.info/api/screenshot?${new Date().getDate()}`}
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-N4QYE453Z4" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());gtag('config', 'G-MB00YK06P7');`
-          }}
-        />
-      </Head>
-
       <main>
         <h1 className="title">Open-Orgs.info</h1>
 
@@ -69,32 +33,6 @@ gtag('js', new Date());gtag('config', 'G-MB00YK06P7');`
         <List data={data} />
       </main>
 
-      <footer>
-        <div>
-          Created by{' '}
-          <a href="https://twitter.com/dmihal" target="twitter">
-            David Mihal
-          </a>
-        </div>
-        <div>
-          Design help from{' '}
-          <a href="https://twitter.com/hey_heey_heeey" target="twitter">
-            @heyheeyheeey
-          </a>
-        </div>
-        <div>
-          <a href="https://cryptofees.info">cryptofees.info</a>
-          {' | '}
-          <a href="https://ethereumnodes.com">ethereumnodes.com</a>
-          {' | '}
-          <a href="https://money-movers.info">money-movers.info</a>
-          {' | '}
-          <a href="https://stakers.info">stakers.info</a>
-          {' | '}
-          <b>open-orgs.info</b>
-        </div>
-      </footer>
-
       <style jsx>{`
         .container {
           min-height: 100vh;
@@ -112,14 +50,6 @@ gtag('js', new Date());gtag('config', 'G-MB00YK06P7');`
           flex-direction: column;
           justify-content: center;
           align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: auto;
-          border-top: 1px solid lightGray;
-          text-align: center;
-          padding: 2rem 0;
         }
 
         a {
@@ -161,19 +91,6 @@ gtag('js', new Date());gtag('config', 'G-MB00YK06P7');`
             width: 100%;
             flex-direction: column;
           }
-        }
-      `}</style>
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: 'Noto Sans TC', sans-serif;
-          background: #eeeeee;
-        }
-
-        * {
-          box-sizing: border-box;
         }
       `}</style>
     </div>

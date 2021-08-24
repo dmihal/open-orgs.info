@@ -15,6 +15,9 @@ export async function setup(sdk: Context) {
       icon: sdk.ipfs.getDataURILoader('QmcqSKKx5Xb9mxp4qUdSzwNbBUJMgHNbvfrZVhYjLwh6jd', 'image/png'),
       category: 'app',
       name: 'Decentral Games',
+      website: 'https://decentral.games',
+      governanceSite: 'https://snapshot.org/#/decentralgames.eth',
+      governanceModel: '',
     },
   })
 }

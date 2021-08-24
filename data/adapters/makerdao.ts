@@ -31,6 +31,10 @@ export async function setup(sdk: Context) {
       icon: sdk.ipfs.getDataURILoader('QmNuxELX7oWXJtJKveaCFDC7niZ4APtkWgPn1NZm2FLSJV', 'image/svg+xml'),
       category: 'app',
       name: 'MakerDAO',
+      website: 'https://makerdao.com',
+      governanceSite: 'https://vote.makerdao.com',
+      governanceForum: 'https://forum.makerdao.com',
+      governanceModel: '',
     },
   })
 }

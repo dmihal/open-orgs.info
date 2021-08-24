@@ -47,6 +47,10 @@ export async function setup(sdk: Context) {
       icon: sdk.ipfs.getDataURILoader('QmW4X8Q36jjPm8fzU21NzFKRxNzReQy4JnehKbRrgybFh6', 'image/svg+xml'),
       category: 'app',
       name: 'Aave',
+      website: 'https://aave.com',
+      governanceSite: 'https://app.aave.com/governance',
+      governanceForum: 'https://governance.aave.com',
+      governanceModel: '',
     },
   })
 }

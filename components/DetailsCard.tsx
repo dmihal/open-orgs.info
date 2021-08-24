@@ -1,7 +1,7 @@
 import React from 'react';
-// import Link from 'next/link';
+import Link from 'next/link';
 import Attribute from './Attribute';
-// import Button from './Button';
+import Button from './Button';
 
 interface DetailsCardProps {
   protocol: any;
@@ -48,11 +48,11 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
 
       <div className="spacer" />
 
-{/*      <div>
-        <Link href={`/protocol/${protocol.id}`} passHref>
+      <div>
+        <Link href={`/organization/${protocol.id}`} passHref>
           <Button>More Details</Button>
         </Link>
-      </div>*/}
+      </div>
 
       <style jsx>{`
         .details-card {

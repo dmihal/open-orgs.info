@@ -142,7 +142,7 @@ const orgs: Org[] = [
   {
     id: 'nexus',
     addresses: ['0x586b9b2F8010b284A0197f392156f1A7Eb5e86e9'],
-    icon: 'QmNQZE9r6NMANc57fA6uXtjC817nVbdgSVCcviG9cHkffB',
+    icon: 'QmWA5VaHWMH96mLmoaLKaxKVf86GLUJQVBp6BfaUoLH81g',
     metadata: {
       name: 'Nexus Mutual',
       website: 'https://nexusmutual.io/',

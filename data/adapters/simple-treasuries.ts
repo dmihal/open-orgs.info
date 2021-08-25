@@ -246,7 +246,7 @@ const orgs: Org[] = [
 
 export async function setup(sdk: Context) {
   const addrToValue = (addr: string) => sdk.plugins.getPlugin('zerion').getTotalValue(addr)
-  const addrToPortfolio = (addr: string) => sdk.plugins.getPlugin('zerion').getPortfolio(addr)
+  const addrToPortfolio = (addr: string | string[]) => sdk.plugins.getPlugin('zerion').getPortfolio(addr)
 
   const createTreasuryLoader = (addresses: string[]) => async () => {
     const balances = await Promise.all(addresses.map(addrToValue))
@@ -255,8 +255,7 @@ export async function setup(sdk: Context) {
   }
 
   const createPortfolioLoader = (addresses: string[]) => async () => {
-    const address = addresses[0] // TODO
-    const portfolio = await addrToPortfolio(address)
+    const portfolio = await addrToPortfolio(addresses)
     return portfolio
   }
 

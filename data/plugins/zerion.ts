@@ -66,15 +66,14 @@ export class Zerion {
     return portfolio.payload.portfolio.total_value
   }
 
-  async getPortfolio(address: string): Promise<any> {
+  async getPortfolio(address: string | string[]): Promise<any> {
+    const payload = address instanceof Array
+      ? { addresses: address }
+      : { address }
+
     const response: any = await get(assetsSocket, {
       scope: ['assets'],
-      payload: {
-        address: address.toLowerCase(),
-        currency: 'usd',
-        // offset: 0,
-        // limit: 20,
-      },
+      payload,
     })
 
     const result = Object.values(response.payload.assets)

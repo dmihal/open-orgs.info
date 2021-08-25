@@ -122,7 +122,6 @@ const Row: React.FC<RowProps> = ({ protocol }) => {
         .details-container {
           max-height: ${cardHeight}px;
           animation: 0.5s 1 slidein;
-          overflow: hidden;
 
           border-top: solid 1px #e3e3e3;
           border-bottom: solid 1px #e3e3e3;
@@ -133,6 +132,10 @@ const Row: React.FC<RowProps> = ({ protocol }) => {
         .details-container.exit {
           max-height: 0;
           animation: 0.5s 1 slideout;
+        }
+
+        .details-container.exit, .details-container.enter {
+          overflow: hidden;
         }
 
         @media (max-width: 700px) {

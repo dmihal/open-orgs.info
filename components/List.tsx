@@ -25,7 +25,6 @@ const List: React.FC<ListProps> = ({ data }) => {
         .list {
           border: solid 1px lightGray;
           border-radius: 0px;
-          overflow: hidden;
           margin: 4px;
           max-width: 700px;
           width: 100%;

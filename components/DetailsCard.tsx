@@ -9,17 +9,33 @@ interface DetailsCardProps {
 }
 
 const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
+  let total = 0
+  let other = 0
   const sections = protocol.results.currentTreasuryPortfolio
-    .map((item: any) => ({
-      amount: item.value,
-      name: item.symbol,
-    }))
+    .map((item: any) => {
+      total += item.value
+      return {
+        amount: item.value,
+        name: item.symbol,
+        unitAmount: item.amount,
+      }
+    })
+    .filter((item: any) => {
+      if (item.amount < total * 0.02) {
+        other += item.amount
+        return false
+      }
+      return true
+    })
     .sort((a: any, b: any) => b.amount - a.amount)
+  if (other > 0) {
+    sections.push({ amount: other, name: 'Other' })
+  }
 
   return (
     <div className="details-card">
       {sections && sections.length > 0 && (
-        <TreasuryBar sections={sections} />
+        <TreasuryBar sections={sections} total={total} />
       )}
 
       {protocol.metadata.description && (

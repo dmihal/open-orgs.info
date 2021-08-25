@@ -52,7 +52,7 @@ function get(socketNamespace: any, requestBody: any) {
 }
 
 export class Zerion {
-  async getPortfolio(address: string): Promise<number> {
+  async getTotalValue(address: string): Promise<number> {
     const portfolio: any = await get(assetsSocket, {
       scope: ['portfolio'],
       payload: {
@@ -64,5 +64,29 @@ export class Zerion {
     })
 
     return portfolio.payload.portfolio.total_value
+  }
+
+  async getPortfolio(address: string): Promise<any> {
+    const response: any = await get(assetsSocket, {
+      scope: ['assets'],
+      payload: {
+        address: address.toLowerCase(),
+        currency: 'usd',
+        // offset: 0,
+        // limit: 20,
+      },
+    })
+
+    const result = Object.values(response.payload.assets)
+      .map((asset: any) => ({
+        address: asset.asset.asset_code,
+        amount: asset.quantity / (10 ** asset.asset.decimals),
+        name: asset.asset.name,
+        symbol: asset.asset.symbol,
+        price: asset.asset.price?.value,
+        value: asset.quantity / (10 ** asset.asset.decimals) * (asset.asset.price?.value || 0),
+      }))
+      .filter((asset: any) => !!asset.price)
+    return result
   }
 }

@@ -30,7 +30,7 @@ export async function setup(sdk: Context) {
   }
 
   const getTreasuryInUSD = async () => {
-    const ecosystemReserveTreasury = await sdk.plugins.getPlugin('zerion').getPortfolio(ecosystemReserve)
+    const ecosystemReserveTreasury = await sdk.plugins.getPlugin('zerion').getTotalValue(ecosystemReserve)
 
     // The revenue collector has too many txs to be supported by Zerion
     const revenueCollectorTreasury = await getEthplorerPortfolio(revenueCollector)
@@ -42,6 +42,7 @@ export async function setup(sdk: Context) {
     id: 'aave',
     queries: {
       currentTreasuryUSD: getTreasuryInUSD,
+      currentTreasuryPortfolio: async () => [],
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader('QmW4X8Q36jjPm8fzU21NzFKRxNzReQy4JnehKbRrgybFh6', 'image/svg+xml'),

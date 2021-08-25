@@ -2,14 +2,26 @@ import React from 'react';
 import Link from 'next/link';
 import Attribute from './Attribute';
 import Button from './Button';
+import TreasuryBar from './TreasuryBar';
 
 interface DetailsCardProps {
   protocol: any;
 }
 
 const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
+  const sections = protocol.results.currentTreasuryPortfolio
+    .map((item: any) => ({
+      amount: item.value,
+      name: item.symbol,
+    }))
+    .sort((a: any, b: any) => b.amount - a.amount)
+
   return (
     <div className="details-card">
+      {sections && sections.length > 0 && (
+        <TreasuryBar sections={sections} />
+      )}
+
       {protocol.metadata.description && (
         <Attribute title="">{protocol.metadata.description}</Attribute>
       )}

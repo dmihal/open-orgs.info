@@ -140,7 +140,6 @@ export const getStaticProps: GetStaticProps<OrgDetailsProps> = async ({ params }
 export const getStaticPaths: GetStaticPaths = async () => {
   const list = sdk.getList('treasuries')
   const ids = list.adapters.map((adapter: Adapter) => adapter.id)
-  console.log(ids)
 
   return {
     paths: ids.map((id: string) => ({ params: { id } })),

@@ -14,7 +14,7 @@ export async function setup(sdk: Context) {
     const [dai, sin, pauseValue] = await Promise.all([
       vat.dai('0xA950524441892A31ebddF91d3cEEFa04Bf454466'),
       vat.dai('0xA950524441892A31ebddF91d3cEEFa04Bf454466'),
-      sdk.plugins.getPlugin('zerion').getPortfolio(PAUSE_ADDRESS),
+      sdk.plugins.getPlugin('zerion').getTotalValue(PAUSE_ADDRESS),
     ])
 
     const daiSurplus = dai.sub(sin).toString() / 1e45
@@ -22,10 +22,15 @@ export async function setup(sdk: Context) {
     return daiSurplus + pauseValue
   }
 
+  const getPortfolio = async () => {
+    return sdk.plugins.getPlugin('zerion').getPortfolio(PAUSE_ADDRESS) // TODO: Dai
+  }
+
   sdk.register({
     id: 'makerdao',
     queries: {
       currentTreasuryUSD: getTreasuryInUSD,
+      currentTreasuryPortfolio: getPortfolio,
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader('QmNuxELX7oWXJtJKveaCFDC7niZ4APtkWgPn1NZm2FLSJV', 'image/svg+xml'),

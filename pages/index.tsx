@@ -100,7 +100,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const list = sdk.getList('treasuries')
 
-  const data = await list.executeQueriesWithMetadata(['currentTreasuryUSD'])
+  const data = await list.executeQueriesWithMetadata(['currentTreasuryUSD', 'currentTreasuryPortfolio'])
 
   return { props: { data }, revalidate: 60 };
 };

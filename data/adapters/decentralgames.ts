@@ -10,6 +10,7 @@ export async function setup(sdk: Context) {
     id: 'decentral-games',
     queries: {
       currentTreasuryUSD: getTreasuryInUSD,
+      currentTreasuryPortfolio: async () => [],
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader('QmcqSKKx5Xb9mxp4qUdSzwNbBUJMgHNbvfrZVhYjLwh6jd', 'image/png'),

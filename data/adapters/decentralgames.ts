@@ -10,6 +10,7 @@ export async function setup(sdk: Context) {
     id: 'decentral-games',
     queries: {
       currentTreasuryUSD: getTreasuryInUSD,
+      // @ts-ignore
       currentTreasuryPortfolio: async () => [],
     },
     metadata: {

@@ -42,6 +42,7 @@ export async function setup(sdk: Context) {
     id: 'aave',
     queries: {
       currentTreasuryUSD: getTreasuryInUSD,
+      // @ts-ignore
       currentTreasuryPortfolio: async () => [],
     },
     metadata: {

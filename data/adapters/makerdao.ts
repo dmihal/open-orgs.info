@@ -9,21 +9,44 @@ const vatABI = [
 ]
 
 export async function setup(sdk: Context) {
-  const getTreasuryInUSD = async () => {
+  const getDaiSurplus = async () => {
     const vat = sdk.ethers.getContract(VAT_ADDRESS, vatABI)
-    const [dai, sin, pauseValue] = await Promise.all([
+    const [dai, sin] = await Promise.all([
       vat.dai('0xA950524441892A31ebddF91d3cEEFa04Bf454466'),
-      vat.dai('0xA950524441892A31ebddF91d3cEEFa04Bf454466'),
-      sdk.plugins.getPlugin('zerion').getTotalValue(PAUSE_ADDRESS),
+      vat.sin('0xA950524441892A31ebddF91d3cEEFa04Bf454466'),
     ])
 
     const daiSurplus = dai.sub(sin).toString() / 1e45
+    return daiSurplus
+  }
+
+  const getTreasuryInUSD = async () => {
+    const [daiSurplus, pauseValue] = await Promise.all([
+      getDaiSurplus(),
+      sdk.plugins.getPlugin('zerion').getTotalValue(PAUSE_ADDRESS),
+    ])
 
     return daiSurplus + pauseValue
   }
 
   const getPortfolio = async () => {
-    return sdk.plugins.getPlugin('zerion').getPortfolio(PAUSE_ADDRESS) // TODO: Dai
+    const [pausePortfolio, daiSurplus] = await Promise.all([
+      sdk.plugins.getPlugin('zerion').getPortfolio(PAUSE_ADDRESS),
+      getDaiSurplus(),
+    ])
+
+    return [
+      ...pausePortfolio,
+      {
+        address: '0x6b175474e89094c44da98b954eedeac495271d0f',
+        amount: daiSurplus,
+        name: 'Dai Stablecoin',
+        symbol: 'DAI',
+        icon: 'https://s3.amazonaws.com/token-icons/0x6b175474e89094c44da98b954eedeac495271d0f.png',
+        price: 1,
+        value: daiSurplus
+      },
+    ]
   }
 
   sdk.register({

@@ -4,6 +4,7 @@ interface Section {
   amount: number
   name: string
   unitAmount?: number
+  icon?: string
 }
 
 interface TreasuryBarProps {
@@ -28,8 +29,13 @@ const TreasuryBar: React.FC<TreasuryBarProps> = ({ sections, total }) => {
         {sections.map((section: Section) => {
           return (
             <div
+              key={section.name}
               className="section"
-              style={{ flex: section.amount, background: pickColor(section.name) }}
+              style={{
+                flex: section.amount,
+                backgroundColor: pickColor(section.name),
+                backgroundImage: section.icon ? `url('${section.icon}')` : undefined,
+              }}
             >
               <div className="tooltip">
                 <div>
@@ -72,6 +78,10 @@ const TreasuryBar: React.FC<TreasuryBarProps> = ({ sections, total }) => {
           position: relative;
           display: flex;
           box-shadow: inset 0px 0px 3px 0px rgb(123 123 123 / 25%);
+
+          background-size: 20px;
+          background-position: 6px center;
+          background-repeat: no-repeat;
         }
         .section:first-child, .section:first-child:before {
           border-top-left-radius: 15px;

@@ -82,6 +82,7 @@ export class Zerion {
         amount: asset.quantity / (10 ** asset.asset.decimals),
         name: asset.asset.name,
         symbol: asset.asset.symbol,
+        icon: asset.asset.icon_url,
         price: asset.asset.price?.value,
         value: asset.quantity / (10 ** asset.asset.decimals) * (asset.asset.price?.value || 0),
       }))

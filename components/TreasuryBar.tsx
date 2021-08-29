@@ -96,18 +96,16 @@ const TreasuryBar: React.FC<TreasuryBarProps> = ({ sections, total }) => {
           bottom: 0;
           width: 40px;
           max-width: 100%;
-          border-top-right-radius: 15px;
-          border-bottom-right-radius: 15px;
         }
         .section:first-child, .section:first-child:before {
           border-top-left-radius: 15px;
           border-bottom-left-radius: 15px;
         }
-        .section:last-child, .section:last-child:before {
+        .section:last-child, .section:last-child:before, .section:last-child .icon {
           border-top-right-radius: 15px;
           border-bottom-right-radius: 15px;
         }
-        .section:hover:after {
+        .section:hover:before {
           content: '';
           background: rgb(120 120 120 / 20%);
           display: block;

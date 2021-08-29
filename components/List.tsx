@@ -15,6 +15,9 @@ const List: React.FC<ListProps> = ({ data }) => {
         <div className="amount">
           Treasury
         </div>
+        <div className="amount">
+          Liquid Treasury
+        </div>
       </div>
 
       {sortedData.map((protocol: any) => (

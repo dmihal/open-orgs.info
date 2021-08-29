@@ -49,6 +49,14 @@ const Row: React.FC<RowProps> = ({ protocol }) => {
             minimumFractionDigits: 0,
           })}
         </div>
+        <div className="amount">
+          {protocol.results.currentLiquidTreasuryUSD?.toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            maximumFractionDigits: 0,
+            minimumFractionDigits: 0,
+          })}
+        </div>
         <div className="arrow">{open ? <ChevronUp /> : <ChevronDown />}</div>
       </a>
 

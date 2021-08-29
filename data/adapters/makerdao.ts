@@ -64,6 +64,7 @@ export async function setup(sdk: Context) {
       governanceSite: 'https://vote.makerdao.com',
       governanceForum: 'https://forum.makerdao.com',
       governanceModel: '',
+      treasuries: [PAUSE_ADDRESS],
     },
   })
 }

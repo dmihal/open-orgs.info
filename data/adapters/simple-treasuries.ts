@@ -274,7 +274,7 @@ export async function setup(sdk: Context) {
         ...org.metadata,
         icon: org.icon ? sdk.ipfs.getDataURILoader(org.icon, org.iconType || 'image/svg+xml') : 0,
         category: 'app',
-        treasuries: org.addresses,
+        treasuries: [...org.addresses, ...(org.vestingAddresses || [])],
       },
     })
   }

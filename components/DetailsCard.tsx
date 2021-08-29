@@ -19,6 +19,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
         name: item.symbol,
         unitAmount: item.amount,
         icon: item.icon,
+        vesting: item.vesting,
       }
     })
     .filter((item: any) => {

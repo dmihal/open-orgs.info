@@ -4,6 +4,7 @@ interface Org {
   id: string
   icon?: string
   addresses: string[]
+  vestingAddresses?: string[]
   iconType?: string
   metadata: any
 }
@@ -77,10 +78,8 @@ const orgs: Org[] = [
   },
   {
     id: 'compound',
-    addresses: [
-      '0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b', // treasury
-      '0x2775b1c75658Be0F640272CCb8c72ac986009e38', // resevoir
-    ],
+    addresses: ['0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b'],
+    vestingAddresses: ['0x2775b1c75658Be0F640272CCb8c72ac986009e38'],
     icon: 'QmZpZsg829EnBxE2MPZykZpAfsxyRsu6EuGbtfTkf2EFNj',
     metadata: {
       name: 'Compound',
@@ -180,10 +179,8 @@ const orgs: Org[] = [
   },
   {
     id: 'tornado',
-    addresses: [
-      '0x5efda50f22d34F262c29268506C5Fa42cB56A1Ce', // governance
-      '0x179f48C78f57A3A78f0608cC9197B8972921d1D2', // vesting
-    ],
+    addresses: ['0x5efda50f22d34F262c29268506C5Fa42cB56A1Ce'],
+    vestingAddresses: ['0x179f48C78f57A3A78f0608cC9197B8972921d1D2'],
     icon: 'QmeUzPPCdpqEYArWyMdUVZJk4GUmuR4TAkK6U4eb9vZDPa',
     metadata: {
       name: 'Tornado Cash',
@@ -197,7 +194,8 @@ const orgs: Org[] = [
     id: 'uniswap',
     addresses: [
       '0x1a9c8182c09f50c8318d769245bea52c32be35bc', // treasury
-      // vesting:
+    ],
+    vestingAddresses: [
       '0x4750c43867ef5f89869132eccf19b9b6c4286e1a',
       '0xe3953d9d317b834592ab58ab2c7a6ad22b54075d',
       '0x4b4e140d1f131fdad6fb59c13af796fd194e4135',
@@ -246,7 +244,6 @@ const orgs: Org[] = [
 
 export async function setup(sdk: Context) {
   const addrToValue = (addr: string) => sdk.plugins.getPlugin('zerion').getTotalValue(addr)
-  const addrToPortfolio = (addr: string | string[]) => sdk.plugins.getPlugin('zerion').getPortfolio(addr)
 
   const createTreasuryLoader = (addresses: string[]) => async () => {
     const balances = await Promise.all(addresses.map(addrToValue))
@@ -254,17 +251,24 @@ export async function setup(sdk: Context) {
     return totalTreasury
   }
 
-  const createPortfolioLoader = (addresses: string[]) => async () => {
-    const portfolio = await addrToPortfolio(addresses)
-    return portfolio
+  const createPortfolioLoader = (addresses: string[], vestingAddresses?: string[]) => async () => {
+    const [portfolio, vestingPortfolio] = await Promise.all([
+      sdk.plugins.getPlugin('zerion').getPortfolio(addresses),
+      vestingAddresses ? sdk.plugins.getPlugin('zerion').getPortfolio(vestingAddresses) : [],
+    ])
+    return [
+      ...portfolio,
+      ...vestingPortfolio.map((portfolioItem: any) => ({ ...portfolioItem, vesting: true }))
+    ]
   }
 
   for (const org of orgs) {
     sdk.register({
       id: org.id,
       queries: {
-        currentTreasuryUSD: createTreasuryLoader(org.addresses),
-        currentTreasuryPortfolio: createPortfolioLoader(org.addresses),
+        currentTreasuryUSD: createTreasuryLoader([...org.addresses, ...(org.vestingAddresses || [])]),
+        currentLiquidTreasuryUSD: createTreasuryLoader(org.addresses),
+        currentTreasuryPortfolio: createPortfolioLoader(org.addresses, org.vestingAddresses),
       },
       metadata: {
         ...org.metadata,

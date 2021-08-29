@@ -53,6 +53,7 @@ export async function setup(sdk: Context) {
     id: 'makerdao',
     queries: {
       currentTreasuryUSD: getTreasuryInUSD,
+      currentLiquidTreasuryUSD: getTreasuryInUSD,
       currentTreasuryPortfolio: getPortfolio,
     },
     metadata: {

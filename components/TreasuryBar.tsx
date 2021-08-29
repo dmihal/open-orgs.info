@@ -5,6 +5,7 @@ interface Section {
   name: string
   unitAmount?: number
   icon?: string
+  vesting?: boolean
 }
 
 interface TreasuryBarProps {
@@ -30,13 +31,15 @@ const TreasuryBar: React.FC<TreasuryBarProps> = ({ sections, total }) => {
           return (
             <div
               key={section.name}
-              className="section"
+              className={`section ${section.vesting ? 'vesting' : ''}`}
               style={{
                 flex: section.amount,
                 backgroundColor: pickColor(section.name),
-                backgroundImage: section.icon ? `url('${section.icon}')` : undefined,
               }}
             >
+              {section.icon && (
+                <div className="icon" style={{ backgroundImage: `url('${section.icon}')` }} />
+              )}
               <div className="tooltip">
                 <div>
                   {section.unitAmount?.toLocaleString('en-US', {
@@ -45,6 +48,7 @@ const TreasuryBar: React.FC<TreasuryBarProps> = ({ sections, total }) => {
                   })}
                   {' '}
                   {section.name}
+                  {section.vesting && ' (Vesting)'}
                 </div>
                 <div>
                   {section.amount.toLocaleString('en-US', {
@@ -78,10 +82,22 @@ const TreasuryBar: React.FC<TreasuryBarProps> = ({ sections, total }) => {
           position: relative;
           display: flex;
           box-shadow: inset 0px 0px 3px 0px rgb(123 123 123 / 25%);
-
+        }
+        .section.vesting {
+          background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgb(70 82 152 / 30%) 10px, rgb(70 82 152 / 30%) 20px );
+        }
+        .icon {
           background-size: 20px;
           background-position: 6px center;
           background-repeat: no-repeat;
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 40px;
+          max-width: 100%;
+          border-top-right-radius: 15px;
+          border-bottom-right-radius: 15px;
         }
         .section:first-child, .section:first-child:before {
           border-top-left-radius: 15px;
@@ -91,7 +107,7 @@ const TreasuryBar: React.FC<TreasuryBarProps> = ({ sections, total }) => {
           border-top-right-radius: 15px;
           border-bottom-right-radius: 15px;
         }
-        .section:hover:before {
+        .section:hover:after {
           content: '';
           background: rgb(120 120 120 / 20%);
           display: block;

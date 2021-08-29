@@ -68,8 +68,8 @@ export class Zerion {
 
   async getPortfolio(address: string | string[]): Promise<any> {
     const payload = address instanceof Array
-      ? { addresses: address }
-      : { address }
+      ? { addresses: (address as string[]).map((address: string) => address.toLowerCase()) }
+      : { address: address.toString().toLowerCase() }
 
     const response: any = await get(assetsSocket, {
       scope: ['assets'],

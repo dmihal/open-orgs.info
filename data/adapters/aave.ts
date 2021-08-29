@@ -14,7 +14,16 @@ interface PortfolioAsset {
 }
 
 export async function setup(sdk: Context) {
-  async function getEthplorerPortfolio(address: string) {
+  const cache: { [address: string]: Promise<any> } = {}
+
+  function getEthplorerPortfolio(address: string) {
+    if (!cache[address]) {
+      cache[address] = getEthplorerPortfolioInternal(address)
+    }
+    return cache[address]
+  }
+
+  async function getEthplorerPortfolioInternal(address: string) {
     const data = await sdk.http.get(`https://api.ethplorer.io/getAddressInfo/${address}?apiKey=freekey`)
 
     let totalValue = data.ETH.balance * data.ETH.price.rate

@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Row from './Row';
 
 interface ListProps {
   data: any[];
 }
 
+const sortTotal = (a: any, b: any) => b.results.currentTreasuryUSD - a.results.currentTreasuryUSD
+const sortLiquid = (a: any, b: any) => b.results.currentLiquidTreasuryUSD - a.results.currentLiquidTreasuryUSD
+
 const List: React.FC<ListProps> = ({ data }) => {
-  const sortedData = data.sort((a: any, b: any) => b.results.currentTreasuryUSD - a.results.currentTreasuryUSD);
+  const [sort, setSort] = useState('total');
+  const sortedData = data.sort(sort === 'total' ? sortTotal : sortLiquid);
 
   return (
     <div className="list">
       <div className="header">
         <div className="name">Name</div>
-        <div className="amount">
-          Treasury
+        <div className="amount" onClick={() => setSort('total')}>
+          {sort === 'total' && '▼'} Total Treasury
         </div>
-        <div className="amount">
-          Liquid Treasury
+        <div className="amount" onClick={() => setSort('liquid')}>
+          {sort === 'liquid' && '▼'} Liquid Treasury
         </div>
       </div>
 

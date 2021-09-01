@@ -127,6 +127,17 @@ const orgs: Org[] = [
     },
   },
   {
+    id: 'metacartel-ventures',
+    addresses: ['0x4570b4faf71e23942b8b9f934b47ccedf7540162'],
+    icon: 'QmRfpPMV471hsVE4Zz6dTxoAyoNmc2UZPjDr6X8o34QAZz',
+    iconType: 'image/jpeg',
+    metadata: {
+      name: 'MetaCartel Ventures',
+      website: 'https://metacartel.xyz',
+      governanceSite: 'https://app.daohaus.club/dao/0x1/0x4570b4faf71e23942b8b9f934b47ccedf7540162',
+    },
+  },
+  {
     id: 'mstable',
     addresses: ['0x3dd46846eed8D147841AE162C8425c08BD8E1b41'],
     icon: 'QmTkxsvMnSPb7A2bPUxA4uJRwJefkyzFgGar5NVxV5UJjr',

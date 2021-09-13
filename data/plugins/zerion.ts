@@ -33,7 +33,8 @@ const assetsSocket = {
 }
 
 function get(socketNamespace: any, requestBody: any) {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
+    let waiting = true
     const { socket, namespace } = socketNamespace
     function handleReceive(data: any) {
       if (verify(requestBody, data)) {
@@ -43,11 +44,18 @@ function get(socketNamespace: any, requestBody: any) {
     }
     const model = requestBody.scope[0]
     function unsubscribe() {
+      waiting = false
       socket.off(`received ${namespace} ${model}`, handleReceive)
       socket.emit('unsubscribe', requestBody)
     }
     socket.emit('get', requestBody)
     socket.on(`received ${namespace} ${model}`, handleReceive)
+
+    setTimeout(() => {
+      if (waiting) {
+        reject(new Error('Request timed out'))
+      }
+    }, 5000)
   })
 }
 

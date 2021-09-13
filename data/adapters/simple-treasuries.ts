@@ -91,10 +91,13 @@ const orgs: Org[] = [
   },
   {
     id: 'dxdao',
-    addresses: ['0x519b70055af55a007110b4ff99b0ea33071c720a'],
+    addresses: [
+      '0x519b70055af55a007110b4ff99b0ea33071c720a', // treasury
+      '0xa1d65e8fb6e87b60feccbc582f7f97804b725521' // bonding curve
+    ],
     icon: 'QmVvZF3qMp8fx9dpYvkCMV849U6oLaKJJA5BxxUCmabvb4',
     metadata: {
-      name: 'DXDAO',
+      name: 'DXdao',
       description: 'DXdao is a decentralized collective that builds and governs decentralized products and services.',
       website: 'https://dxdao.eth.link',
       governanceSite: 'https://alchemy.daostack.io/dao/0x519b70055af55a007110b4ff99b0ea33071c720a',

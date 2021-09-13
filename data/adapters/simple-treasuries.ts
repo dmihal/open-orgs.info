@@ -59,7 +59,7 @@ const orgs: Org[] = [
     name: 'DXdao',
     addresses: [
       '0x519b70055af55a007110b4ff99b0ea33071c720a', // treasury
-      '0xa1d65e8fb6e87b60feccbc582f7f97804b725521' // bonding curve
+      // '0xa1d65e8fb6e87b60feccbc582f7f97804b725521' // bonding curve
     ],
     icon: 'QmVvZF3qMp8fx9dpYvkCMV849U6oLaKJJA5BxxUCmabvb4',
   },

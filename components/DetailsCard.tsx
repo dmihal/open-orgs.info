@@ -2,37 +2,15 @@ import React from 'react';
 import Link from 'next/link';
 import Attribute from './Attribute';
 import Button from './Button';
-import TreasuryBar from './TreasuryBar';
+import TreasuryBar from './TreasuryBar'
+import { portfolioToSections } from 'utils'
 
 interface DetailsCardProps {
   protocol: any;
 }
 
 const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
-  let total = 0
-  let other = 0
-  const sections = protocol.results.currentTreasuryPortfolio
-    .map((item: any) => {
-      total += item.value
-      return {
-        amount: item.value,
-        name: item.symbol,
-        unitAmount: item.amount,
-        icon: item.icon,
-        vesting: item.vesting,
-      }
-    })
-    .filter((item: any) => {
-      if (item.amount < total * 0.02) {
-        other += item.amount
-        return false
-      }
-      return true
-    })
-    .sort((a: any, b: any) => b.amount - a.amount)
-  if (other > 0) {
-    sections.push({ amount: other, name: 'Other' })
-  }
+  const { total, sections } = portfolioToSections(protocol.results.currentTreasuryPortfolio)
 
   return (
     <div className="details-card">
@@ -68,14 +46,6 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
         </Attribute>
       )}
 
-      <Attribute title="Treasury Addresses">
-        {protocol.metadata.treasuries?.map((address: string) => (
-          <div key={address}>
-            <a href={`https://etherscan.io/address/${address}`} target="etherscan">{address}</a>
-          </div>
-        ))}
-      </Attribute>
-
       <div className="spacer" />
 
       <div>
@@ -105,7 +75,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
         }
       `}</style>
     </div>
-  );
-};
+  )
+}
 
-export default DetailsCard;
+export default DetailsCard

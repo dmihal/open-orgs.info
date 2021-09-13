@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface Section {
+export interface Section {
   amount: number
   name: string
   unitAmount?: number

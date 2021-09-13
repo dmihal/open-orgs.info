@@ -8,13 +8,18 @@ import Attribute from 'components/Attribute'
 import { Adapter } from '@cryptostats/sdk'
 import 'data/adapters'
 import sdk from 'data/sdk'
+import { portfolioToSections } from 'utils'
+import TreasuryBar from 'components/TreasuryBar'
 
 interface OrgDetailsProps {
-  // id: string
+  treasury: number
+  liquidTreasury: number
+  portfolio: any[]
   metadata: any
 }
 
-export const ProtocolDetails: NextPage<OrgDetailsProps> = ({ /*id,*/ metadata }) => {
+export const ProtocolDetails: NextPage<OrgDetailsProps> = ({ portfolio, metadata }) => {
+  const { total, sections } = portfolioToSections(portfolio)
 
   return (
     <main>
@@ -40,6 +45,10 @@ export const ProtocolDetails: NextPage<OrgDetailsProps> = ({ /*id,*/ metadata })
           {metadata.subtitle && <div className="protocol-subtitle">{metadata.subtitle}</div>}
         </div>
       </h2>
+
+      {sections && sections.length > 0 && (
+        <TreasuryBar sections={sections} total={total} />
+      )}
 
       <p>{metadata.description}</p>
 
@@ -128,11 +137,15 @@ export const getStaticProps: GetStaticProps<OrgDetailsProps> = async ({ params }
     throw new Error(`Protocol ${params!.id.toString()} not found`)
   }
 
+  const [treasury, liquidTreasury, portfolio, metadata] = await Promise.all([
+    adapter.query('currentTreasuryUSD'),
+    adapter.query('currentLiquidTreasuryUSD'),
+    adapter.query('currentTreasuryPortfolio'),
+    adapter.getMetadata(),
+  ])
+
   return {
-    props: {
-      // id: adapter.id,
-      metadata: await adapter.getMetadata(),
-    },
+    props: { treasury, liquidTreasury, portfolio, metadata },
     revalidate: 60,
   }
 }

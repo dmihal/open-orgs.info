@@ -53,9 +53,10 @@ function get(socketNamespace: any, requestBody: any) {
 
     setTimeout(() => {
       if (waiting) {
+        console.error(requestBody)
         reject(new Error('Request timed out'))
       }
-    }, 5000)
+    }, 10000)
   })
 }
 

@@ -7,7 +7,7 @@ if (!process.env.INFURA_KEY) {
 
 const sdk = new CryptoStatsSDK({
   infuraKey: process.env.INFURA_KEY,
-  ipfsGateway: 'https://dweb.link',
+  ipfsGateway: 'https://ipfs.cryptostats.community',
 })
 
 sdk.plugins.addPlugin('zerion', new Zerion())

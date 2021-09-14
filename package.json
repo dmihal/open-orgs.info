@@ -15,6 +15,7 @@
     "ethers-multicall": "^0.1.4",
     "next": "latest",
     "next-images": "^1.7.0",
+    "next-plausible": "2.1.2-beta.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "socket.io-client": "2.4.0"

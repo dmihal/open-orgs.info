@@ -4690,6 +4690,11 @@ next-images@^1.7.0:
     file-loader "^6.0.0"
     url-loader "^4.0.0"
 
+next-plausible@2.1.2-beta.0:
+  version "2.1.2-beta.0"
+  resolved "https://registry.yarnpkg.com/next-plausible/-/next-plausible-2.1.2-beta.0.tgz#6a4067532df6b49472b14f9989fc8e4dcdc1b923"
+  integrity sha512-oArtD59Oy8kP0HZsI4d29KqiRV85R8cnH0iPZC1Todg0DVEmFG9DwWqjC2ItKKPxCp91wAX2TUrlGag/7HuVpw==
+
 next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"

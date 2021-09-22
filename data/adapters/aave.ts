@@ -96,6 +96,7 @@ export async function setup(sdk: Context) {
       currentTreasuryUSD: getTreasuryInUSD,
       currentLiquidTreasuryUSD: getTreasuryInUSD,
       currentTreasuryPortfolio: getPortfolio,
+      recentProposals: async () => [],
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader('QmW4X8Q36jjPm8fzU21NzFKRxNzReQy4JnehKbRrgybFh6', 'image/svg+xml'),

@@ -1,4 +1,5 @@
 import { Context } from '@cryptostats/sdk'
+import { getSnapshotProposals } from './snapshot'
 
 interface Org {
   id: string
@@ -6,6 +7,8 @@ interface Org {
   addresses: string[]
   vestingAddresses?: string[]
   iconType?: string
+  snapshotId?: string
+  governanceSite?: string
   metadata: any
 }
 
@@ -15,6 +18,7 @@ const orgs: Org[] = [
     addresses: ['0x8392f6669292fa56123f71949b52d883ae57e225'],
     icon: 'QmSuSUcAvGkxkJ7n5RxnDyqXUchAjXMwTmNioz2xzXVfxo',
     iconType: 'image/jpeg',
+    snapshotId: 'alchemixstakers.eth',
     metadata: {
       name: 'Alchemix',
       website: 'https://alchemix.fi/',
@@ -40,11 +44,11 @@ const orgs: Org[] = [
     addresses: ['0x4441776e6a5d61fa024a5117bfc26b953ad1f425'],
     icon: 'QmSraKiNmctuShFEqgGmLVamKuwZC6TFs26R27959ugExn',
     iconType: 'image/png',
+    snapshotId: 'badgerdao.eth',
     metadata: {
       name: 'Badger',
       description: 'Badger DAO is dedicated to building products and infrastructure to bring Bitcoin to DeFi.',
       website: 'https://badger.finance',
-      governanceSite: 'https://snapshot.org/#/badgerdao.eth',
       governanceForum: 'https://forum.badger.finance',
       governanceModel: '',
     },
@@ -94,10 +98,10 @@ const orgs: Org[] = [
     addresses: ['0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC'],
     icon: 'QmRU38pAray7rYt4irRswPAK6E6nxiTiXZ1bAp8fr3CcW2',
     iconType: 'image/png',
+    snapshotId: 'index-coop.eth',
     metadata: {
       name: 'Index Coop',
       website: 'https://indexcoop.com',
-      governanceSite: 'https://snapshot.org/#/index-coop.eth',
       governanceForum: 'https://gov.indexcoop.com',
       governanceModel: '',
     },
@@ -106,10 +110,10 @@ const orgs: Org[] = [
     id: 'linkswap',
     addresses: ['0xE69A81b96FBF5Cb6CAe95d2cE5323Eff2bA0EAE4'],
     icon: 'QmdAhG1qWuW6wEcuW29ZjAvqPz8grSYHsR7HZJLSkqkGQ5',
+    snapshotId: 'yflink.eth',
     metadata: {
       name: 'Linkswap',
       website: 'https://linkswap.app',
-      governanceSite: 'https://snapshot.org/#/yflink',
       governanceModel: '',
     },
   },
@@ -148,6 +152,13 @@ const orgs: Org[] = [
       governanceModel: '',
     },
   },
+  // {
+  //   id: 'olympus',
+  //   addresses: ['0x31F8Cc382c9898b273eff4e0b7626a6987C846E8'],
+  //   metadata: {
+  //     name: 'Olympus DAO',
+  //   },
+  // },
   {
     id: 'pooltogether',
     addresses: ['0x42cd8312D2BCe04277dD5161832460e95b24262E'],
@@ -163,10 +174,10 @@ const orgs: Org[] = [
     id: 'sushi',
     addresses: ['0xe94b5eec1fa96ceecbd33ef5baa8d00e4493f4f3'],
     icon: 'QmVAko4auvE2NDr8kfnovVqTqujrJ69YrUZQFPZeREMWk5',
+    snapshotId: 'sushigov.eth',
     metadata: {
       name: 'SushiSwap',
       website: 'https://sushi.com',
-      governanceSite: 'https://snapshot.org/#/sushigov.eth',
       governanceForum: 'https://forum.sushi.com/',
       governanceModel: '',
     },
@@ -229,10 +240,10 @@ const orgs: Org[] = [
     ],
     icon: 'QmcPjtA1Q9QhnAeruXkrsYU3HZ5b8sm3eU78VUjHDXhior',
     iconType: 'image/png',
+    snapshotId: 'yam',
     metadata: {
       name: 'Yam Finance',
       website: 'https://yam.finance',
-      governanceSite: 'https://snapshot.page/#/yam',
       governanceForum: 'https://forum.yam.finance',
       governanceModel: '',
     },
@@ -241,10 +252,10 @@ const orgs: Org[] = [
     id: 'yearn',
     addresses: ['0xfeb4acf3df3cdea7399794d0869ef76a6efaff52' /*  ychad.eth */],
     icon: 'QmYGdvDA6jM5AV1yBvQKUAz74wqGeBUwVohBWEgbwqXpjk',
+    snapshotId: 'yearn',
     metadata: {
       name: 'Yearn',
       website: 'https://yearn.finance',
-      governanceSite: 'https://snapshot.org/#/yearn',
       governanceForum: 'https://gov.yearn.finance',
       governanceModel: '',
     },
@@ -278,9 +289,15 @@ export async function setup(sdk: Context) {
         currentTreasuryUSD: createTreasuryLoader([...org.addresses, ...(org.vestingAddresses || [])]),
         currentLiquidTreasuryUSD: createTreasuryLoader(org.addresses),
         currentTreasuryPortfolio: createPortfolioLoader(org.addresses, org.vestingAddresses),
+        recentProposals: org.snapshotId
+          ? () => getSnapshotProposals(sdk, org.snapshotId!)
+          : async () => [],
       },
       metadata: {
         ...org.metadata,
+        governanceSite: org.snapshotId
+          ? `https://snapshot.org/#/${org.snapshotId}`
+          : org.governanceSite || null,
         icon: org.icon ? sdk.ipfs.getDataURILoader(org.icon, org.iconType || 'image/svg+xml') : 0,
         category: 'app',
         treasuries: [...org.addresses, ...(org.vestingAddresses || [])],

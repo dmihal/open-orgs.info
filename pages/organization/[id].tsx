@@ -15,10 +15,11 @@ interface OrgDetailsProps {
   treasury: number
   liquidTreasury: number
   portfolio: any[]
+  recentProposals: any[]
   metadata: any
 }
 
-export const ProtocolDetails: NextPage<OrgDetailsProps> = ({ portfolio, metadata }) => {
+export const ProtocolDetails: NextPage<OrgDetailsProps> = ({ portfolio, recentProposals, metadata }) => {
   const { total, sections } = portfolioToSections(portfolio)
 
   return (
@@ -84,6 +85,18 @@ export const ProtocolDetails: NextPage<OrgDetailsProps> = ({ portfolio, metadata
         ))}
       </Attribute>
 
+      {recentProposals.length > 0 && (
+        <Attribute title="Recent proposals">
+          {recentProposals.map((proposal: any) => (
+            <div key={proposal.id}>
+              <a href={proposal.link} target="gov">
+                {proposal.title}
+              </a>
+            </div>
+          ))}
+        </Attribute>
+      )}
+
       <style jsx>{`
         main {
           margin-bottom: 18px;
@@ -137,15 +150,16 @@ export const getStaticProps: GetStaticProps<OrgDetailsProps> = async ({ params }
     throw new Error(`Protocol ${params!.id.toString()} not found`)
   }
 
-  const [treasury, liquidTreasury, portfolio, metadata] = await Promise.all([
+  const [treasury, liquidTreasury, portfolio, recentProposals, metadata] = await Promise.all([
     adapter.query('currentTreasuryUSD'),
     adapter.query('currentLiquidTreasuryUSD'),
     adapter.query('currentTreasuryPortfolio'),
+    adapter.query('recentProposals'),
     adapter.getMetadata(),
   ])
 
   return {
-    props: { treasury, liquidTreasury, portfolio, metadata },
+    props: { treasury, liquidTreasury, portfolio, recentProposals, metadata },
     revalidate: 60,
   }
 }

@@ -46,6 +46,14 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
         </Attribute>
       )}
 
+      {protocol.results.recentProposals.length > 0 && (
+        <Attribute title="Most recent proposal">
+          <a href={protocol.results.recentProposals[0].link} target="gov" className="proposalLink">
+            {protocol.results.recentProposals[0].title}
+          </a>
+        </Attribute>
+      )}
+
       <div className="spacer" />
 
       <div>
@@ -70,6 +78,14 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
         .row > :global(div) {
           flex: 1;
         }
+
+        .proposalLink {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
         .spacer {
           flex: 1;
         }

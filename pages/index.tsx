@@ -104,6 +104,7 @@ export const getStaticProps: GetStaticProps = async () => {
     'currentTreasuryUSD',
     'currentLiquidTreasuryUSD',
     'currentTreasuryPortfolio',
+    'recentProposals',
   ])
 
   return { props: { data }, revalidate: 60 };

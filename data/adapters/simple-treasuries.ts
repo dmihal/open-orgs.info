@@ -10,6 +10,7 @@ interface Org {
   snapshotId?: string
   governanceSite?: string
   metadata: any
+  getProposals?: (sdk: Context) => Promise<any>
 }
 
 const orgs: Org[] = [
@@ -268,6 +269,27 @@ const orgs: Org[] = [
       governanceForum: 'https://gov.uniswap.org',
       governanceModel: '',
     },
+    getProposals: async (sdk: Context) => {
+      const query = `{
+        proposals(
+          first: 5,
+          orderBy: creationTime,
+          orderDirection: desc
+        ) {
+          id
+          description
+          creationTime
+          status
+        }
+      }`
+      const { proposals } = await sdk.graph.query('arr00/uniswap-governance-v3', query);
+      return proposals.map((proposal: any) => ({
+        title: proposal.description.split(/\n|  /)[0],
+        start: proposal.creationTime,
+        state: proposal.status,
+        link: `https://app.uniswap.org/#/vote/${proposal.id.replace('.', '/')}`,
+      }))
+    }
   },
   {
     id: 'yam',
@@ -322,15 +344,20 @@ export async function setup(sdk: Context) {
   }
 
   for (const org of orgs) {
+    let recentProposals = async () => []
+    if (org.getProposals) {
+      recentProposals = () => org.getProposals!(sdk)
+    } else if (org.snapshotId) {
+      recentProposals = () => getSnapshotProposals(sdk, org.snapshotId!)
+    }
+
     sdk.register({
       id: org.id,
       queries: {
         currentTreasuryUSD: createTreasuryLoader([...org.addresses, ...(org.vestingAddresses || [])]),
         currentLiquidTreasuryUSD: createTreasuryLoader(org.addresses),
         currentTreasuryPortfolio: createPortfolioLoader(org.addresses, org.vestingAddresses),
-        recentProposals: org.snapshotId
-          ? () => getSnapshotProposals(sdk, org.snapshotId!)
-          : async () => [],
+        recentProposals,
       },
       metadata: {
         ...org.metadata,

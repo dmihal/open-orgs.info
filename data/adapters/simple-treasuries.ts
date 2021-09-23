@@ -94,6 +94,20 @@ const orgs: Org[] = [
     },
   },
   {
+    id: 'gitcoin',
+    addresses: [
+      '0x57a8865cfB1eCEf7253c27da6B4BC3dAEE5Be518', // Treasury
+      '0xde21F729137C5Af1b01d73aF1dC21eFfa2B8a0d6', // Grants
+    ],
+    icon: 'QmR8nFrnSu7Mby5tdPPdUrTZttaK7L3TVsZheuwZ1KPUCT',
+    snapshotId: 'gitcoindao.eth',
+    metadata: {
+      name: 'Gitcoin',
+      website: 'https://gitcoin.co',
+      governanceForum: 'https://gov.gitcoin.co',
+    },
+  },
+  {
     id: 'index-coop',
     addresses: ['0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC'],
     icon: 'QmRU38pAray7rYt4irRswPAK6E6nxiTiXZ1bAp8fr3CcW2',
@@ -104,6 +118,17 @@ const orgs: Org[] = [
       website: 'https://indexcoop.com',
       governanceForum: 'https://gov.indexcoop.com',
       governanceModel: '',
+    },
+  },
+  {
+    id: 'lao',
+    addresses: ['0x8f56682a50becb1df2fb8136954f2062871bc7fc'],
+    icon: 'QmcBBSvXC4nUQHSRy5BcGvX7RGWyhzeUifyHNR3e4q26T2',
+    iconType: 'image/jpeg',
+    metadata: {
+      name: 'The LAO',
+      website: 'https://linkswap.app',
+      governanceSite: 'https://app.daohaus.club/dao/0x1/0x8f56682a50becb1df2fb8136954f2062871bc7fc',
     },
   },
   {
@@ -152,13 +177,27 @@ const orgs: Org[] = [
       governanceModel: '',
     },
   },
-  // {
-  //   id: 'olympus',
-  //   addresses: ['0x31F8Cc382c9898b273eff4e0b7626a6987C846E8'],
-  //   metadata: {
-  //     name: 'Olympus DAO',
-  //   },
-  // },
+  {
+    id: 'nouns',
+    addresses: ['0x0BC3807Ec262cB779b38D65b38158acC3bfedE10'],
+    icon: 'QmXCYbSzPAWTUiNuHaFt6AxRkwhq9ho1cDfJ2Vc1Yeb4Js',
+    metadata: {
+      name: 'Nouns DAO',
+      website: 'https://nouns.wtf',
+      governanceSite: 'https://nouns.wtf/vote',
+      governanceForum: 'https://discourse.nouns.wtf',
+    },
+  },
+  {
+    id: 'olympus',
+    addresses: ['0x31F8Cc382c9898b273eff4e0b7626a6987C846E8'],
+    icon: 'QmbtqUKno2FATf4RFPXAvWCamYrRT6UAKurKiNCuMCJw1J',
+    snapshotId: 'olympusdao.eth',
+    metadata: {
+      name: 'Olympus DAO',
+      website: 'https://olympusdao.finance',
+    },
+  },
   {
     id: 'pooltogether',
     addresses: ['0x42cd8312D2BCe04277dD5161832460e95b24262E'],

@@ -90,13 +90,36 @@ export async function setup(sdk: Context) {
     return [...reservePortfolio, ...collectorPortfolio]
   }
 
+  const getRecentProposals = async () => {
+    const query = `{
+      proposals(
+        first: 5,
+        orderBy: createdTimestamp,
+        orderDirection: desc
+      ) {
+        title
+        id
+        ipfsHash
+        createdTimestamp
+        state
+      }
+    }`
+    const data = await sdk.graph.query('aave/governance-v2', query);
+    return data.proposals.map((proposal: any) => ({
+      title: proposal.title,
+      start: proposal.createdTimestamp,
+      state: proposal.state,
+      link: `https://app.aave.com/governance/${proposal.id}-${proposal.ipfsHash}`,
+    }))
+  }
+
   sdk.register({
     id: 'aave',
     queries: {
       currentTreasuryUSD: getTreasuryInUSD,
       currentLiquidTreasuryUSD: getTreasuryInUSD,
       currentTreasuryPortfolio: getPortfolio,
-      recentProposals: async () => [],
+      recentProposals: getRecentProposals,
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader('QmW4X8Q36jjPm8fzU21NzFKRxNzReQy4JnehKbRrgybFh6', 'image/svg+xml'),
@@ -106,6 +129,7 @@ export async function setup(sdk: Context) {
       governanceSite: 'https://app.aave.com/governance',
       governanceForum: 'https://governance.aave.com',
       governanceModel: '',
+      treasuries: [ecosystemReserve, revenueCollector],
     },
   })
 }

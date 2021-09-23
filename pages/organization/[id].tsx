@@ -88,7 +88,7 @@ export const ProtocolDetails: NextPage<OrgDetailsProps> = ({ portfolio, recentPr
       {recentProposals.length > 0 && (
         <Attribute title="Recent proposals">
           {recentProposals.map((proposal: any) => (
-            <div key={proposal.id}>
+            <div key={proposal.title}>
               <a href={proposal.link} target="gov">
                 {proposal.title}
               </a>

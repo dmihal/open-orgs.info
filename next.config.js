@@ -1,2 +1,10 @@
 const withImages = require('next-images');
-module.exports = withImages();
+const { withPlausibleProxy } = require('next-plausible');
+
+module.exports = withPlausibleProxy({
+  customDomain: 'https://analytics.cryptostats.community',
+})(
+  withImages({
+    inlineImageLimit: 300000,
+  })
+);

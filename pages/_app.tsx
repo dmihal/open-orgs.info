@@ -3,7 +3,9 @@ import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import ReactGA from 'react-ga4';
-import Header from 'components/Header';
+import PlausibleProvider from 'next-plausible'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
 
 ReactGA.initialize('G-MB00YK06P7');
 
@@ -32,31 +34,13 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         />
       </Head>
 
-      <Header />
+      <PlausibleProvider domain="open-orgs.info">
+        <Header />
 
-      <Component {...pageProps} />
+        <Component {...pageProps} />
 
-      <footer>
-        <div>Data updates continuously</div>
-        <div>
-          Created by{' '}
-          <a href="https://twitter.com/dmihal" target="twitter">
-            David Mihal
-          </a>
-        </div>
-
-        <div>
-          <a href="https://cryptofees.info">cryptofees.info</a>
-          {' | '}
-          <a href="https://ethereumnodes.com">ethereumnodes.com</a>
-          {' | '}
-          <a href="https://money-movers.info">money-movers.info</a>
-          {' | '}
-          <a href="https://open-orgs.info">open-orgs.info</a>
-          {' | '}
-          <b>ethburned.info</b>
-        </div>
-      </footer>
+        <Footer />
+      </PlausibleProvider>
 
       <style jsx>{`
         .container {

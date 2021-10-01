@@ -3,6 +3,7 @@ import { NextPage, GetStaticProps } from 'next'
 import 'data/adapters'
 import sdk from 'data/sdk'
 import List from 'components/List'
+import SocialTags from 'components/SocialTags'
 
 interface HomeProps {
   data: any[]
@@ -11,6 +12,8 @@ interface HomeProps {
 export const Home: NextPage<HomeProps> = ({ data }) => {
   return (
     <div className="container">
+      <SocialTags />
+
       <main>
         <h1 className="title">Open-Orgs.info</h1>
 

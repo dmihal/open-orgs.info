@@ -200,17 +200,6 @@ const orgs: Org[] = [
     },
   },
   {
-    id: 'pooltogether',
-    addresses: ['0x42cd8312D2BCe04277dD5161832460e95b24262E'],
-    vestingAddresses: ['0x21950E281bDE1714ffd1062ed17c56D4D8de2359'],
-    icon: 'QmUCxUzEuxbnGT31rXnCGfefr4a768YCkV6yfBWeSdSTPX',
-    metadata: {
-      name: 'PoolTogether',
-      website: 'https://pooltogether.com',
-      governanceSite: 'https://vote.pooltogether.com/',
-    },
-  },
-  {
     id: 'sushi',
     addresses: ['0xe94b5eec1fa96ceecbd33ef5baa8d00e4493f4f3'],
     icon: 'QmVAko4auvE2NDr8kfnovVqTqujrJ69YrUZQFPZeREMWk5',

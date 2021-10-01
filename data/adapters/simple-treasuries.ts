@@ -137,6 +137,7 @@ const orgs: Org[] = [
     addresses: ['0x3e40d73eb977dc6a537af587d48316fee66e9c8c'],
     icon: 'QmcsGcopqrVyzTLXETtecJuhqxqxbzUvuFMqBd27yFKCMt',
     metadata: {
+      name: 'Lido',
       website: 'https://lido.fi',
       governanceForum: 'https://research.lido.fi',
       governanceSite: 'https://mainnet.lido.fi/#/lido-dao.aragonid.eth',

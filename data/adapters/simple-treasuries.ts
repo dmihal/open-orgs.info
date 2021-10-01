@@ -133,6 +133,16 @@ const orgs: Org[] = [
     },
   },
   {
+    id: 'lido',
+    addresses: ['0x3e40d73eb977dc6a537af587d48316fee66e9c8c'],
+    icon: 'QmcsGcopqrVyzTLXETtecJuhqxqxbzUvuFMqBd27yFKCMt',
+    metadata: {
+      website: 'https://lido.fi',
+      governanceForum: 'https://research.lido.fi',
+      governanceSite: 'https://mainnet.lido.fi/#/lido-dao.aragonid.eth',
+    },
+  },
+  {
     id: 'linkswap',
     addresses: ['0xE69A81b96FBF5Cb6CAe95d2cE5323Eff2bA0EAE4'],
     icon: 'QmdAhG1qWuW6wEcuW29ZjAvqPz8grSYHsR7HZJLSkqkGQ5',

@@ -226,6 +226,7 @@ const orgs: Org[] = [
     addresses: [
       '0xEb3107117FEAd7de89Cd14D463D340A2E6917769', // synthetix DAO
       '0x86626E1BbBd0ce95ED52e0C5E19f371a6640B591', // grants DAO
+      '0x99f4176ee457afedffcb1839c7ab7a030a5e4a92', // treasury council
     ],
     icon: 'QmYPqFXTqYcynD5hT9sZbsoPZXbvjSfL7WWQPL7EwYAyE5',
     metadata: {

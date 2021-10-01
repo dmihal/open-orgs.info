@@ -4,7 +4,7 @@ import Head from 'next/head'
 const SocialTags: React.FC = () => {
   return (
     <Head>
-      <meta property="og:title" content="Open-Orgs.info" />
+      <meta property="og:title" content="OpenOrgs.info" />
       <meta
         property="og:image"
         content={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/social/top.png`}
@@ -14,7 +14,7 @@ const SocialTags: React.FC = () => {
         content="DAOs are the new companies. What's on their balance sheets?"
       />
 
-      <meta name="twitter:title" content="Open-Orgs.info" />
+      <meta name="twitter:title" content="OpenOrgs.info" />
       <meta
         name="twitter:description"
         content="DAOs are the new companies. What's on their balance sheets?"

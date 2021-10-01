@@ -15,7 +15,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
       <SocialTags />
 
       <main>
-        <h1 className="title">Open-Orgs.info</h1>
+        <h1 className="title">OpenOrgs.info</h1>
 
         <p className="description">
           DAOs are the new companies.<br />

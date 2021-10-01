@@ -27,7 +27,7 @@ const SocialCard: React.FC<SocialCardProps> = ({ data }) => {
       <g>
         <rect fill="#F9FAFC" x="0" y="0" width="688" height="344"></rect>
         <text fontFamily={font} fontSize="24" fill="#091636" x="27" y="44">
-          Open-Orgs.info
+          OpenOrgs.info
         </text>
 
         <g transform="translate(28, 69)">

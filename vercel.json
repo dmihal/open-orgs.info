@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "pages/api/social/top.png.js": {
+      "includeFiles": "font/fonts.conf"
+    }
+  }
+}

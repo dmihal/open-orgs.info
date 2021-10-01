@@ -6,12 +6,18 @@ import path from 'path'
 import SocialCard from 'components/SocialCard'
 import 'data/adapters'
 import sdk from 'data/sdk'
+import dirTree from 'directory-tree'
+import fs from 'fs'
 
 // These statements causes Next to bundle these files
-path.resolve(process.cwd(), 'fonts', 'fonts.conf')
-path.resolve(process.cwd(), 'fonts', 'SofiaProRegular.ttf')
+console.log(path.resolve(__dirname, '..', '..', '..', 'fonts', 'fonts.conf'))
+console.log(path.resolve(process.cwd(), 'fonts', 'SofiaProRegular.ttf'))
 
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
+  console.log(dirTree(path.resolve(process.cwd(), 'fonts')))
+  console.log(dirTree(path.resolve(__dirname, '..', '..', '..', 'fonts')))
+  console.log(fs.readFileSync(`${process.cwd()}/font/fonts.conf`))
+
   const list = sdk.getList('treasuries')
   const data = await list.executeQueriesWithMetadata(['currentTreasuryUSD'], {
     allowMissingQuery: true,

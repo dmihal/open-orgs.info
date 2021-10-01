@@ -10,6 +10,7 @@
   "dependencies": {
     "@cryptostats/sdk": "^0.0.29",
     "@types/socket.io-client": "^1.4.36",
+    "directory-tree": "^3.0.0",
     "next": "latest",
     "next-images": "^1.7.0",
     "next-plausible": "^2.1.3",

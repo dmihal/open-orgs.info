@@ -1,4 +1,5 @@
 import { Context } from '@cryptostats/sdk'
+import { getSnapshotProposals } from './snapshot'
 
 export async function setup(sdk: Context) {
   const getTreasuryInUSD = async () => {
@@ -10,11 +11,18 @@ export async function setup(sdk: Context) {
     id: 'decentral-games',
     queries: {
       currentTreasuryUSD: getTreasuryInUSD,
+      currentLiquidTreasuryUSD: getTreasuryInUSD,
+      // @ts-ignore
+      currentTreasuryPortfolio: async () => [],
+      recentProposals: () => getSnapshotProposals(sdk, 'decentralgames.eth'),
     },
     metadata: {
       icon: sdk.ipfs.getDataURILoader('QmcqSKKx5Xb9mxp4qUdSzwNbBUJMgHNbvfrZVhYjLwh6jd', 'image/png'),
       category: 'app',
       name: 'Decentral Games',
+      website: 'https://decentral.games',
+      governanceSite: 'https://snapshot.org/#/decentralgames.eth',
+      governanceModel: '',
     },
   })
 }

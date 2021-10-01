@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
 import 'data/adapters'
 import sdk from 'data/sdk'
@@ -10,7 +10,7 @@ interface HomeProps {
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
   return (
-    <Fragment>
+    <div className="container">
       <main>
         <h1 className="title">Open-Orgs.info</h1>
 
@@ -41,14 +41,6 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-        }
-
-        footer {
-          width: 100%;
-          height: auto;
-          border-top: 1px solid lightGray;
-          text-align: center;
-          padding: 2rem 0;
         }
 
         a {
@@ -92,14 +84,19 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           }
         }
       `}</style>
-    </Fragment>
+    </div>
   );
 };
 
 export const getStaticProps: GetStaticProps = async () => {
   const list = sdk.getList('treasuries')
 
-  const data = await list.executeQueriesWithMetadata(['currentTreasuryUSD'])
+  const data = await list.executeQueriesWithMetadata([
+    'currentTreasuryUSD',
+    'currentLiquidTreasuryUSD',
+    'currentTreasuryPortfolio',
+    'recentProposals',
+  ])
 
   return { props: { data }, revalidate: 60 };
 };

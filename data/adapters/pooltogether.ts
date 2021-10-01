@@ -32,7 +32,7 @@ export async function setup(sdk: Context) {
   const getPortfolio = async () => {
     const [treasury, vesting, scusdc] = await Promise.all([
       sdk.plugins.getPlugin('zerion').getPortfolio(TREASURY_ADDRESS),
-      sdk.plugins.getPlugin('zerion').getPortfolio(TREASURY_ADDRESS),
+      sdk.plugins.getPlugin('zerion').getPortfolio(VESTING_ADDRESS),
       getSCUSDC(),
     ])
 

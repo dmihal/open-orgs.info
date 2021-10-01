@@ -34,6 +34,10 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
       </main>
 
       <style jsx>{`
+        .container {
+          max-width: 100%;
+        }
+
         main {
           padding: 2rem 0 3rem;
           flex: 1;

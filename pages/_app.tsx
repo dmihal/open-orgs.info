@@ -50,6 +50,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           flex-direction: column;
           justify-content: space-between;
           align-items: center;
+          overflow: hidden;
         }
       `}</style>
       <style jsx global>{`

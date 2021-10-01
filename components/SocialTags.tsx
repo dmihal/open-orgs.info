@@ -7,7 +7,7 @@ const SocialTags: React.FC = () => {
       <meta property="og:title" content="OpenOrgs.info" />
       <meta
         property="og:image"
-        content={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/social/top.png`}
+        content={`https://${process.env.NEXT_PUBLIC_VERCEL_URL}/social.png`}
       />
       <meta
         property="og:description"
@@ -23,7 +23,7 @@ const SocialTags: React.FC = () => {
         name="twitter:image"
         content={`https://${
           process.env.NEXT_PUBLIC_VERCEL_URL
-        }/api/social/top.png?${new Date().getDate()}`}
+        }/social.png?${new Date().getDate()}`}
       />
       <meta name="twitter:card" content="summary_large_image" />
     </Head>

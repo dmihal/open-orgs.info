@@ -216,6 +216,17 @@ const orgs: Org[] = [
     },
   },
   {
+    id: 'piedao',
+    addresses: ['0x3bcf3db69897125aa61496fc8a8b55a5e3f245d5'],
+    icon: 'QmahuQPfbqJEE9tXZKfubWPviy5wxesdfBbdUXhf8JRcN4',
+    snapshotId: 'piedao',
+    metadata: {
+      name: 'PieDAO',
+      website: 'https://piedao.org',
+      governanceForum: 'https://forum.piedao.org/',
+    },
+  },
+  {
     id: 'sushi',
     addresses: ['0xe94b5eec1fa96ceecbd33ef5baa8d00e4493f4f3'],
     icon: 'QmVAko4auvE2NDr8kfnovVqTqujrJ69YrUZQFPZeREMWk5',

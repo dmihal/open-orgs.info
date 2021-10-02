@@ -67,6 +67,7 @@ export class Zerion {
       payload: {
         address: address.toLowerCase(),
         currency: 'usd',
+        portfolio_fields: 'all',
         // offset: 0,
         // limit: 20,
       },

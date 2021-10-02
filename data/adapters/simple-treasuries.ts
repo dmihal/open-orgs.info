@@ -328,7 +328,11 @@ const orgs: Org[] = [
   },
   {
     id: 'yearn',
-    addresses: ['0xfeb4acf3df3cdea7399794d0869ef76a6efaff52' /*  ychad.eth */],
+    addresses: [
+      '0xfeb4acf3df3cdea7399794d0869ef76a6efaff52', // ychad.eth
+      '0x93A62dA5a14C80f265DAbC077fCEE437B1a0Efde', // treasury.ychad.eth
+      '0xd42e1cb8b98382df7db43e0f09dfe57365659d16', // DSProxy
+    ],
     icon: 'QmYGdvDA6jM5AV1yBvQKUAz74wqGeBUwVohBWEgbwqXpjk',
     snapshotId: 'yearn',
     metadata: {

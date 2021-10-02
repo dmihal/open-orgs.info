@@ -42,7 +42,12 @@ const orgs: Org[] = [
   },
   {
     id: 'badger',
-    addresses: ['0x4441776e6a5d61fa024a5117bfc26b953ad1f425'],
+    addresses: [
+      '0x4441776e6a5d61fa024a5117bfc26b953ad1f425',
+      '0x5a54ca44e8f5a1a695f8621f15bfa159a140bb61',
+      '0x8de82c4c968663a0284b01069dde6ef231d0ef9b',
+      '0xb65cef03b9b89f99517643226d76e286ee999e77',
+    ],
     icon: 'QmSraKiNmctuShFEqgGmLVamKuwZC6TFs26R27959ugExn',
     iconType: 'image/png',
     snapshotId: 'badgerdao.eth',

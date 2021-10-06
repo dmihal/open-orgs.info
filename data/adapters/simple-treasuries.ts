@@ -105,6 +105,7 @@ const orgs: Org[] = [
       '0x57a8865cfB1eCEf7253c27da6B4BC3dAEE5Be518', // Treasury
       '0xde21F729137C5Af1b01d73aF1dC21eFfa2B8a0d6', // Grants
     ],
+    vestingAddresses: ['0x44aa9c5a034c1499ec27906e2d427b704b567ffe'],
     icon: 'QmR8nFrnSu7Mby5tdPPdUrTZttaK7L3TVsZheuwZ1KPUCT',
     snapshotId: 'gitcoindao.eth',
     metadata: {

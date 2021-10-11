@@ -48,7 +48,7 @@ const TreasuryBar: React.FC<TreasuryBarProps> = ({ sections, total }) => {
                   })}
                   {' '}
                   {section.name}
-                  {section.vesting && ' (Vesting)'}
+                  {section.vesting && ' (Unvested)'}
                 </div>
                 <div>
                   {section.amount.toLocaleString('en-US', {

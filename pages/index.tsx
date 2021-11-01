@@ -4,6 +4,7 @@ import 'data/adapters'
 import sdk from 'data/sdk'
 import List from 'components/List'
 import SocialTags from 'components/SocialTags'
+import Toolbar from 'components/Toolbar'
 import { PortfolioItem } from 'data/adapters/types'
 
 interface HomeProps {
@@ -35,16 +36,10 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           What's on their balance sheets?
         </p>
 
-        <div>
-          <a
-            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-            className="twitter-share-button"
-            data-show-count="true"
-          >
-            Tweet
-          </a>
-          <script async src="https://platform.twitter.com/widgets.js"></script>
-        </div>
+        <Toolbar
+          hideNative={hideNative}
+          onHideNativeChange={setHideNative}
+        />
 
         <List data={data} hideNative={hideNative} />
       </main>

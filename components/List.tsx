@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
+import { PortfolioItem } from 'data/adapters/types';
 import Row from './Row';
 
 interface ListProps {
-  data: any[];
+  data: {
+    id: string;
+    name: string;
+    results: {
+      currentTreasuryUSD: number;
+      currentLiquidTreasuryUSD: number;
+      currentTreasuryPortfolio: PortfolioItem[];
+      recentProposals: any[];
+    };
+    metadata: any;
+  }[];
 }
 
 const sortTotal = (a: any, b: any) => b.results.currentTreasuryUSD - a.results.currentTreasuryUSD
@@ -24,7 +35,7 @@ const List: React.FC<ListProps> = ({ data }) => {
         </div>
       </div>
 
-      {sortedData.map((protocol: any) => (
+      {sortedData.map((protocol) => (
         <Row protocol={protocol} key={protocol.id} />
       ))}
 

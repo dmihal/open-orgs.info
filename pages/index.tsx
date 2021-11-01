@@ -4,9 +4,20 @@ import 'data/adapters'
 import sdk from 'data/sdk'
 import List from 'components/List'
 import SocialTags from 'components/SocialTags'
+import { PortfolioItem } from 'data/adapters/types'
 
 interface HomeProps {
-  data: any[]
+  data: {
+    id: string;
+    name: string;
+    results: {
+      currentTreasuryUSD: number;
+      currentLiquidTreasuryUSD: number;
+      currentTreasuryPortfolio: PortfolioItem[];
+      recentProposals: any[];
+    };
+    metadata: any;
+  }[]
 }
 
 export const Home: NextPage<HomeProps> = ({ data }) => {

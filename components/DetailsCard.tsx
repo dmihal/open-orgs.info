@@ -4,9 +4,20 @@ import Attribute from './Attribute';
 import Button from './Button';
 import TreasuryBar from './TreasuryBar'
 import { portfolioToSections } from 'utils'
+import { PortfolioItem } from 'data/adapters/types';
 
 interface DetailsCardProps {
-  protocol: any;
+  protocol: {
+    id: string;
+    name: string;
+    results: {
+      currentTreasuryUSD: number;
+      currentLiquidTreasuryUSD: number;
+      currentTreasuryPortfolio: PortfolioItem[];
+      recentProposals: any[];
+    };
+    metadata: any;
+  };
 }
 
 const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {

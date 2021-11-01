@@ -4,9 +4,20 @@ import ReactGA from 'react-ga4';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import DetailsCard from './DetailsCard';
 import RowName from './RowName';
+import { PortfolioItem } from 'data/adapters/types';
 
 interface RowProps {
-  protocol: any;
+  protocol: {
+    id: string;
+    name: string;
+    results: {
+      currentTreasuryUSD: number;
+      currentLiquidTreasuryUSD: number;
+      currentTreasuryPortfolio: PortfolioItem[];
+      recentProposals: any[];
+    };
+    metadata: any;
+  };
 }
 
 const toggle = (isOpen: boolean) => !isOpen;

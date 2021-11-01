@@ -4,7 +4,7 @@ import ReactGA from 'react-ga4';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import DetailsCard from './DetailsCard';
 import RowName from './RowName';
-import { filteredPortfolioValue } from 'utils';
+import { filteredTreasuryValue } from 'utils';
 import { PortfolioItem } from 'data/adapters/types';
 
 interface RowProps {
@@ -31,12 +31,8 @@ const Row: React.FC<RowProps> = ({ protocol, hideNative }) => {
 
   // const isApp = protocol.category !== 'l1' && protocol.category !== 'l2';
 
-  const currentTreasury = hideNative
-    ? protocol.results.currentTreasuryUSD - filteredPortfolioValue(protocol.results.currentTreasuryPortfolio, { native: true })
-    : protocol.results.currentTreasuryUSD
-  const currentLiquidTreasury = hideNative
-    ? protocol.results.currentLiquidTreasuryUSD - filteredPortfolioValue(protocol.results.currentTreasuryPortfolio, { native: true, vesting: false })
-    : protocol.results.currentLiquidTreasuryUSD
+  const currentTreasury = filteredTreasuryValue(protocol, !hideNative, true)
+  const currentLiquidTreasury = filteredTreasuryValue(protocol, !hideNative, false)
 
   return (
     <Fragment>

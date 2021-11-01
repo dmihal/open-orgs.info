@@ -35,6 +35,14 @@ export function portfolioToSections(portfolio: PortfolioItem[], filters: {native
   return { total, sections }
 }
 
+export function filteredTreasuryValue(protocol: any, native: boolean, vesting: boolean): number {
+  const {currentTreasuryUSD, currentLiquidTreasuryUSD, currentTreasuryPortfolio } = protocol.results
+  if (native) return vesting ? currentTreasuryUSD : currentLiquidTreasuryUSD
+  return vesting
+    ? currentTreasuryUSD - filteredPortfolioValue(currentTreasuryPortfolio, { native: true, vesting: true })
+    : currentLiquidTreasuryUSD - filteredPortfolioValue(currentTreasuryPortfolio, { native: true, vesting: false })
+}
+
 export function filteredPortfolioValue(portfolio: PortfolioItem[], filters: {native?: boolean, vesting?: boolean}): number {
   return portfolio
     .filter(item => {

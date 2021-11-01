@@ -39,7 +39,7 @@ export function filteredTreasuryValue(protocol: any, native: boolean, vesting: b
   const {currentTreasuryUSD, currentLiquidTreasuryUSD, currentTreasuryPortfolio } = protocol.results
   if (native) return vesting ? currentTreasuryUSD : currentLiquidTreasuryUSD
   return vesting
-    ? currentTreasuryUSD - filteredPortfolioValue(currentTreasuryPortfolio, { native: true, vesting: true })
+    ? currentTreasuryUSD - filteredPortfolioValue(currentTreasuryPortfolio, { native: true })
     : currentLiquidTreasuryUSD - filteredPortfolioValue(currentTreasuryPortfolio, { native: true, vesting: false })
 }
 

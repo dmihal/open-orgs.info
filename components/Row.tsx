@@ -19,20 +19,20 @@ interface RowProps {
     };
     metadata: any;
   };
-  hideNative: boolean
+  showNative: boolean
 }
 
 const toggle = (isOpen: boolean) => !isOpen;
 
 const cardHeight = 600;
 
-const Row: React.FC<RowProps> = ({ protocol, hideNative }) => {
+const Row: React.FC<RowProps> = ({ protocol, showNative }) => {
   const [open, setOpen] = useState(false);
 
   // const isApp = protocol.category !== 'l1' && protocol.category !== 'l2';
 
-  const currentTreasury = filteredTreasuryValue(protocol, !hideNative, true)
-  const currentLiquidTreasury = filteredTreasuryValue(protocol, !hideNative, false)
+  const currentTreasury = filteredTreasuryValue(protocol, showNative, true)
+  const currentLiquidTreasury = filteredTreasuryValue(protocol, showNative, false)
 
   return (
     <Fragment>
@@ -78,7 +78,7 @@ const Row: React.FC<RowProps> = ({ protocol, hideNative }) => {
 
       <CSSTransition in={open} timeout={500} unmountOnExit>
         <div className="details-container">
-          <DetailsCard protocol={protocol} hideNative={hideNative} />
+          <DetailsCard protocol={protocol} showNative={showNative} />
         </div>
       </CSSTransition>
       <style jsx>{`

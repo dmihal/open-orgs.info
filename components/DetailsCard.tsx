@@ -18,11 +18,11 @@ interface DetailsCardProps {
     };
     metadata: any;
   };
-  hideNative: boolean
+  showNative: boolean
 }
 
-const DetailsCard: React.FC<DetailsCardProps> = ({ protocol, hideNative }) => {
-  const { total, sections } = portfolioToSections(protocol.results.currentTreasuryPortfolio, hideNative ? {native: false} : {})
+const DetailsCard: React.FC<DetailsCardProps> = ({ protocol, showNative }) => {
+  const { total, sections } = portfolioToSections(protocol.results.currentTreasuryPortfolio, showNative ? {} : { native: false })
 
   return (
     <div className="details-card">

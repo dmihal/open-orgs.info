@@ -22,7 +22,7 @@ interface HomeProps {
 }
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
-  const [hideNative, setHideNative] = useState(false);
+  const [showNative, setshowNative] = useState(true);
 
   return (
     <div className="container">
@@ -37,11 +37,11 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         </p>
 
         <Toolbar
-          hideNative={hideNative}
-          onHideNativeChange={setHideNative}
+          showNative={showNative}
+          onShowNativeChange={setshowNative}
         />
 
-        <List data={data} hideNative={hideNative} />
+        <List data={data} showNative={showNative} />
       </main>
 
       <style jsx>{`

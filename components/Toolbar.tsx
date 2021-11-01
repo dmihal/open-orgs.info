@@ -20,13 +20,13 @@ import Button from './Button';
 // );
 
 interface ToolbarProps {
-  hideNative: boolean;
-  onHideNativeChange: (hideNative: boolean) => void;
+  showNative: boolean;
+  onShowNativeChange: (showNative: boolean) => void;
 }
 
 const Toolbar: React.FC<ToolbarProps> = ({
-  hideNative,
-  onHideNativeChange,
+  showNative,
+  onShowNativeChange,
 }) => {
 
   return (
@@ -51,8 +51,8 @@ const Toolbar: React.FC<ToolbarProps> = ({
           Share
         </Button>
 
-        <Button onClick={() => onHideNativeChange(!hideNative)} Icon={hideNative ? CheckSquare : Square}>
-          Hide Native Assets
+        <Button onClick={() => onShowNativeChange(!showNative)} Icon={showNative ? CheckSquare : Square}>
+          Show Native Assets
         </Button>
 
       </div>

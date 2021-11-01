@@ -15,15 +15,15 @@ interface ListProps {
     };
     metadata: any;
   }[];
-  hideNative: boolean;
+  showNative: boolean;
 }
 
 const sortTreasury = (a: any, b: any, includeNative: boolean, includeVesting: boolean) => filteredTreasuryValue(b, includeNative, includeVesting) - filteredTreasuryValue(a, includeNative, includeVesting)
 
-const List: React.FC<ListProps> = ({ data, hideNative }) => {
+const List: React.FC<ListProps> = ({ data, showNative }) => {
   const [sort, setSort] = useState('total');
 
-  const sortedData = useMemo(() => data.sort((a, b) => sortTreasury(a,b, !hideNative, sort === 'total')), [data, hideNative, sort]);
+  const sortedData = useMemo(() => data.sort((a, b) => sortTreasury(a,b, showNative, sort === 'total')), [data, showNative, sort]);
 
   return (
     <div className="list">
@@ -38,7 +38,7 @@ const List: React.FC<ListProps> = ({ data, hideNative }) => {
       </div>
 
       {sortedData.map((protocol) => (
-        <Row protocol={protocol} key={protocol.id} hideNative={hideNative} />
+        <Row protocol={protocol} key={protocol.id} showNative={showNative} />
       ))}
 
       <style jsx>{`

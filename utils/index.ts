@@ -5,6 +5,11 @@ export function portfolioToSections(portfolio: PortfolioItem[], filters: {native
   let total = 0
   let other = 0
   const sections: Section[] = portfolio
+    .filter(item => {
+      if (filters.native !== undefined && item.native != filters.native) return false;
+      if (filters.vesting !== undefined && item.vesting != filters.vesting) return false;
+      return true
+    })
     .map((item) => {
       total += item.value
       return {
@@ -28,4 +33,14 @@ export function portfolioToSections(portfolio: PortfolioItem[], filters: {native
   }
 
   return { total, sections }
+}
+
+export function filteredPortfolioValue(portfolio: PortfolioItem[], filters: {native?: boolean, vesting?: boolean}): number {
+  return portfolio
+    .filter(item => {
+      if (filters.native !== undefined && item.native != filters.native) return false;
+      if (filters.vesting !== undefined && item.vesting != filters.vesting) return false;
+      return true
+    })
+    .reduce((totalNativeValue: number, item: any) => totalNativeValue + item.value, 0)
 }

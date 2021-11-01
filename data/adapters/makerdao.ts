@@ -3,6 +3,8 @@ import { Context } from '@cryptostats/sdk'
 const VAT_ADDRESS = '0x35d1b3f3d7966a1dfe207aa4514c12a259a0492b'
 const PAUSE_ADDRESS = '0xbe8e3e3618f7474f8cb1d074a26affef007e98fb'
 
+const NATIVE_TOKENS = ['0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2']
+
 const vatABI = [
   'function dai(address holder) external view returns (uint256)',
   'function sin(address holder) external view returns (uint256)',
@@ -51,7 +53,7 @@ export async function setup(sdk: Context) {
     ])
 
     return [
-      ...pausePortfolio.portfolio,
+      ...pausePortfolio.portfolio.map((portfolioItem: any) => ({ ...portfolioItem,  native: NATIVE_TOKENS.includes(portfolioItem.address) })),
       {
         address: '0x6b175474e89094c44da98b954eedeac495271d0f',
         amount: daiSurplus,
@@ -59,7 +61,9 @@ export async function setup(sdk: Context) {
         symbol: 'DAI',
         icon: 'https://s3.amazonaws.com/token-icons/0x6b175474e89094c44da98b954eedeac495271d0f.png',
         price: 1,
-        value: daiSurplus
+        value: daiSurplus,
+        native: false,
+        vesting: false
       },
     ]
   }

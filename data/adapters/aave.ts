@@ -3,6 +3,8 @@ import { Context } from '@cryptostats/sdk'
 const ECOSYSTEM_RESERVE = '0x25F2226B597E8F9514B3F68F00f494cF4f286491';
 const revenueCollector = '0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c';
 
+const NATIVE_TOKENS = ['0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'];
+
 interface PortfolioAsset {
   address: string
   amount: number
@@ -11,6 +13,8 @@ interface PortfolioAsset {
   icon: string
   price: number
   value: number
+  native: boolean
+  vesting: boolean
 }
 
 export async function setup(sdk: Context) {
@@ -61,6 +65,8 @@ export async function setup(sdk: Context) {
           name: token.tokenInfo.name,
           symbol: token.tokenInfo.symbol,
           icon: `https://s3.amazonaws.com/token-icons/${token.tokenInfo.address}.png`,
+          native: NATIVE_TOKENS.includes(token.tokenInfo.address),
+          vesting: false
         })
       }
     }
@@ -81,6 +87,8 @@ export async function setup(sdk: Context) {
             name: token.tokenInfo.name,
             symbol: token.tokenInfo.symbol,
             icon: `https://s3.amazonaws.com/token-icons/${token.tokenInfo.address}.png`,
+            native: NATIVE_TOKENS.includes(token.tokenInfo.address),
+            vesting: false
           })
         }
       }
@@ -102,7 +110,10 @@ export async function setup(sdk: Context) {
       getEcosystemReservePortfolio(),
       getEthplorerPortfolio(revenueCollector),
     ])
-    return [...reservePortfolio, ...collectorPortfolio]
+    return [
+      ...reservePortfolio.map((portfolioItem: any) => ({...portfolioItem, native: NATIVE_TOKENS.includes(portfolioItem.address) })),
+      ...collectorPortfolio
+    ]
   }
 
   const getRecentProposals = async () => {

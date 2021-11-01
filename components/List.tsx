@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
 import { PortfolioItem } from 'data/adapters/types';
+import React, { useMemo, useState } from 'react';
+import { filteredPortfolioValue } from 'utils';
 import Row from './Row';
 
 interface ListProps {
@@ -14,14 +15,19 @@ interface ListProps {
     };
     metadata: any;
   }[];
+  hideNative: boolean;
 }
 
-const sortTotal = (a: any, b: any) => b.results.currentTreasuryUSD - a.results.currentTreasuryUSD
-const sortLiquid = (a: any, b: any) => b.results.currentLiquidTreasuryUSD - a.results.currentLiquidTreasuryUSD
+const totalTreasury = (protocol: any, hideNative: boolean) => hideNative ? protocol.results.currentTreasuryUSD - filteredPortfolioValue(protocol.results.currentTreasuryPortfolio, { native: true }) : protocol.results.currentTreasuryUSD
+const totalLiquid = (protocol: any, hideNative: boolean) => hideNative ? protocol.results.currentTreasuryUSD - filteredPortfolioValue(protocol.results.currentTreasuryPortfolio, { native: true, vesting: false }) : protocol.results.currentLiquidTreasuryUSD
 
-const List: React.FC<ListProps> = ({ data }) => {
+const sortTotal = (a: any, b: any, hideNative: boolean) => totalTreasury(b, hideNative) - totalTreasury(a, hideNative)
+const sortLiquid = (a: any, b: any, hideNative: boolean) => totalLiquid(b, hideNative) - totalLiquid(a, hideNative)
+
+const List: React.FC<ListProps> = ({ data, hideNative }) => {
   const [sort, setSort] = useState('total');
-  const sortedData = data.sort(sort === 'total' ? sortTotal : sortLiquid);
+
+  const sortedData = useMemo(() => data.sort((a, b) => sort === 'total' ? sortTotal(a, b, hideNative) : sortLiquid(a, b, hideNative)), [data, hideNative]);
 
   return (
     <div className="list">
@@ -36,7 +42,7 @@ const List: React.FC<ListProps> = ({ data }) => {
       </div>
 
       {sortedData.map((protocol) => (
-        <Row protocol={protocol} key={protocol.id} />
+        <Row protocol={protocol} key={protocol.id} hideNative={hideNative} />
       ))}
 
       <style jsx>{`

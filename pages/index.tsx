@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NextPage, GetStaticProps } from 'next'
 import 'data/adapters'
 import sdk from 'data/sdk'
@@ -21,6 +21,8 @@ interface HomeProps {
 }
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
+  const [hideNative, setHideNative] = useState(false);
+
   return (
     <div className="container">
       <SocialTags />
@@ -44,7 +46,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           <script async src="https://platform.twitter.com/widgets.js"></script>
         </div>
 
-        <List data={data} />
+        <List data={data} hideNative={hideNative} />
       </main>
 
       <style jsx>{`

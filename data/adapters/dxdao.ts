@@ -37,6 +37,8 @@ export async function setup(sdk: Context) {
         name: 'USDC',
         symbol: 'USDC',
         icon: `https://s3.amazonaws.com/token-icons/${USDC_TOKEN}.png`,
+        native: false,
+        vesting: false
       },
       {
         address: DXD_TOKEN,
@@ -46,6 +48,8 @@ export async function setup(sdk: Context) {
         name: 'DXdao',
         symbol: 'DXD',
         icon: `https://s3.amazonaws.com/token-icons/${DXD_TOKEN}.png`,
+        native: true,
+        vesting: false
       },
     ]
 

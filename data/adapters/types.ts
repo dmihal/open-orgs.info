@@ -6,4 +6,6 @@ export interface PortfolioItem {
     icon: string;
     price: number;
     value: number;
+    native: boolean,
+    vesting: boolean,
 }

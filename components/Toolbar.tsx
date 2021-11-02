@@ -43,11 +43,7 @@ const Toolbar: React.FC<ToolbarProps> = ({
           </Button>
         )} */}
 
-        <Button
-          href={`https://twitter.com/intent/tweet?text=${encodeURI(
-              'OpenOrgs.info'
-            )}&url=${encodeURI(window.location.href)}`}
-            Icon={Share}>
+        <Button href={`https://twitter.com/share?ref_src=twsrc%5Etfw`} Icon={Share}>
           Share
         </Button>
 

@@ -71,7 +71,10 @@ export async function setup(sdk: Context) {
       getBondingCurve(),
     ])
 
-    return [...reservePortfolio, ...bondingCurvePortfolio]
+    return [
+      ...reservePortfolio.map((portfolioItem: any) => ({ ...portfolioItem, native: portfolioItem.address === DXD_TOKEN })),
+      ...bondingCurvePortfolio
+    ]
   }
 
   sdk.register({

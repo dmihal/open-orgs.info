@@ -50,5 +50,5 @@ export function filteredPortfolioValue(portfolio: PortfolioItem[], filters: {nat
       if (filters.vesting !== undefined && item.vesting != filters.vesting) return false;
       return true
     })
-    .reduce((totalNativeValue: number, item: any) => totalNativeValue + item.value, 0)
+    .reduce((totalValue: number, item: any) => totalValue + item.value, 0)
 }

@@ -67,37 +67,10 @@ const Toolbar: React.FC<ToolbarProps> = ({
           justify-content: flex-end;
           align-self: stretch;
         }
-        .label {
-          font-size: 10px;
-          display: flex;
-          max-width: 150px;
-          align-items: center;
-          background: #eeeeee;
-          padding: 2px;
-          border-radius: 4px;
-        }
-        .label span {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        .label button {
-          margin-left: 4px;
-          background: transparent;
-          border: none;
-          outline: none;
-          padding: 4px;
-        }
-        .label button:hover {
-          background: #dedede;
-        }
 
         @media (max-width: 700px) {
           .toolbar {
             flex-direction: column-reverse;
-          }
-          .tags {
-            margin-top: 4px;
           }
         }
       `}</style>

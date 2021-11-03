@@ -1,6 +1,6 @@
 import { Context } from '@cryptostats/sdk'
 
-const ecosystemReserve = '0x25F2226B597E8F9514B3F68F00f494cF4f286491';
+const ECOSYSTEM_RESERVE = '0x25F2226B597E8F9514B3F68F00f494cF4f286491';
 const revenueCollector = '0x464C71f6c2F760DdA6093dCB91C24c39e5d6e18c';
 
 interface PortfolioAsset {
@@ -14,6 +14,21 @@ interface PortfolioAsset {
 }
 
 export async function setup(sdk: Context) {
+  let treasuryPortfolioPromise: Promise<any> | null
+  const getEcosystemReservePortfolio = (): Promise<any> => {
+    if (!treasuryPortfolioPromise) {
+      treasuryPortfolioPromise = fetch(`https://zerion-api.vercel.app/api/portfolio/${ECOSYSTEM_RESERVE}`)
+        .then(req => req.json())
+        .then(result => {
+          if (result.success) {
+            return result.value
+          }
+          throw new Error(result.message)
+        })
+    }
+    return treasuryPortfolioPromise
+  }
+
   const cache: { [address: string]: Promise<any> } = {}
 
   function getEthplorerPortfolio(address: string) {
@@ -74,17 +89,17 @@ export async function setup(sdk: Context) {
   }
 
   const getTreasuryInUSD = async () => {
-    const ecosystemReserveTreasury = await sdk.plugins.getPlugin('zerion').getTotalValue(ecosystemReserve)
+    const ecosystemReserve = await getEcosystemReservePortfolio()
 
     // The revenue collector has too many txs to be supported by Zerion
     const { totalValue: revenueCollectorTreasury } = await getEthplorerPortfolio(revenueCollector)
 
-    return ecosystemReserveTreasury + revenueCollectorTreasury
+    return ecosystemReserve.totalValue + revenueCollectorTreasury
   }
 
   const getPortfolio = async () => {
-    const [reservePortfolio, { portfolio: collectorPortfolio }] = await Promise.all([
-      sdk.plugins.getPlugin('zerion').getPortfolio(ecosystemReserve),
+    const [{ portfolio: reservePortfolio }, { portfolio: collectorPortfolio }] = await Promise.all([
+      getEcosystemReservePortfolio(),
       getEthplorerPortfolio(revenueCollector),
     ])
     return [...reservePortfolio, ...collectorPortfolio]
@@ -129,7 +144,7 @@ export async function setup(sdk: Context) {
       governanceSite: 'https://app.aave.com/governance',
       governanceForum: 'https://governance.aave.com',
       governanceModel: '',
-      treasuries: [ecosystemReserve, revenueCollector],
+      treasuries: [ECOSYSTEM_RESERVE, revenueCollector],
     },
   })
 }

@@ -5,6 +5,21 @@ const DXD_TOKEN = '0xa1d65e8fb6e87b60feccbc582f7f97804b725521'
 const USDC_TOKEN = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
 
 export async function setup(sdk: Context) {
+  let treasuryPortfolioPromise: Promise<any> | null
+  const getTresuryPortfolio = (): Promise<any> => {
+    if (!treasuryPortfolioPromise) {
+      treasuryPortfolioPromise = fetch(`https://zerion-api.vercel.app/api/portfolio/${TREASURY_ADDRESS}`)
+        .then(req => req.json())
+        .then(result => {
+          if (result.success) {
+            return result.value
+          }
+          throw new Error(result.error)
+        })
+    }
+    return treasuryPortfolioPromise
+  }
+
   const getBondingCurve = async () => {
     const [dxdPrice, dxdBalance, usdcBalance] = await Promise.all([
       sdk.coinGecko.getCurrentPrice('dxdao'),
@@ -38,17 +53,17 @@ export async function setup(sdk: Context) {
   }
 
   const getTreasuryInUSD = async () => {
-    const [treasuryValue, { totalValue: bondingCurveVal }] = await Promise.all([
-      sdk.plugins.getPlugin('zerion').getTotalValue(TREASURY_ADDRESS),
+    const [treasury, { totalValue: bondingCurveVal }] = await Promise.all([
+      getTresuryPortfolio(),
       getBondingCurve(),
     ])
 
-    return treasuryValue + bondingCurveVal
+    return treasury.totalValue + bondingCurveVal
   }
 
   const getPortfolio = async () => {
-    const [reservePortfolio, { portfolio: bondingCurvePortfolio }] = await Promise.all([
-      sdk.plugins.getPlugin('zerion').getPortfolio(TREASURY_ADDRESS),
+    const [{ portfolio: reservePortfolio }, { portfolio: bondingCurvePortfolio }] = await Promise.all([
+      getTresuryPortfolio(),
       getBondingCurve(),
     ])
 

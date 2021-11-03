@@ -5,40 +5,55 @@ const VESTING_ADDRESS = '0x21950E281bDE1714ffd1062ed17c56D4D8de2359'
 const SCUSDC_TOKEN = '0x391a437196c81eea7bbbbd5ed4df6b49de4f5c96'
 
 export async function setup(sdk: Context) {
+  let portfolioCache: { [address: string]: Promise<any> } = {}
+  const getPortfolio = (key: string): Promise<any> => {
+    if (!portfolioCache[key]) {
+      portfolioCache[key] = fetch(`https://zerion-api.vercel.app/api/portfolio/${key}`)
+        .then(req => req.json())
+        .then(result => {
+          if (result.success) {
+            return result.value
+          }
+          throw new Error(result.error)
+        })
+    }
+    return portfolioCache[key]
+  }
+
   const getSCUSDC = async () => {
     const balance = await sdk.ethers.getERC20Contract(SCUSDC_TOKEN).balanceOf(TREASURY_ADDRESS)
     return balance.toString() / 1e6
   }
 
   const getTreasuryInUSD = async () => {
-    const [treasuryValue, vestingValue, scusdc] = await Promise.all([
-      sdk.plugins.getPlugin('zerion').getTotalValue(TREASURY_ADDRESS),
-      sdk.plugins.getPlugin('zerion').getTotalValue(VESTING_ADDRESS),
+    const [treasury, vesting, scusdc] = await Promise.all([
+      getPortfolio(TREASURY_ADDRESS),
+      getPortfolio(VESTING_ADDRESS),
       getSCUSDC(),
     ])
 
-    return treasuryValue + vestingValue + scusdc
+    return treasury.totalValue + vesting.totalValue + scusdc
   }
 
   const getLiquidTreasuryInUSD = async () => {
-    const [treasuryValue, scusdc] = await Promise.all([
-      sdk.plugins.getPlugin('zerion').getTotalValue(TREASURY_ADDRESS),
+    const [treasury, scusdc] = await Promise.all([
+      getPortfolio(TREASURY_ADDRESS),
       getSCUSDC(),
     ])
 
-    return treasuryValue + scusdc
+    return treasury.totalValue + scusdc
   }
 
-  const getPortfolio = async () => {
+  const getTreasuryPortfolio = async () => {
     const [treasury, vesting, scusdc] = await Promise.all([
-      sdk.plugins.getPlugin('zerion').getPortfolio(TREASURY_ADDRESS),
-      sdk.plugins.getPlugin('zerion').getPortfolio(VESTING_ADDRESS),
+      getPortfolio(TREASURY_ADDRESS),
+      getPortfolio(VESTING_ADDRESS),
       getSCUSDC(),
     ])
 
     return [
-      ...treasury,
-      ...vesting.map((portfolioItem: any) => ({ ...portfolioItem, vesting: true })),
+      ...treasury.portfolio,
+      ...vesting.portfolio.map((portfolioItem: any) => ({ ...portfolioItem, vesting: true })),
       {
         address: SCUSDC_TOKEN,
         amount: scusdc,
@@ -56,7 +71,7 @@ export async function setup(sdk: Context) {
     queries: {
       currentTreasuryUSD: getTreasuryInUSD,
       currentLiquidTreasuryUSD: getLiquidTreasuryInUSD,
-      currentTreasuryPortfolio: getPortfolio,
+      currentTreasuryPortfolio: getTreasuryPortfolio,
       recentProposals: async () => [],
     },
     metadata: {

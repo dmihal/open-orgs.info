@@ -350,19 +350,33 @@ const orgs: Org[] = [
 ]
 
 export async function setup(sdk: Context) {
-  const addrToValue = (addr: string) => sdk.plugins.getPlugin('zerion').getTotalValue(addr)
+  const portfolioCache: { [addresses: string]: Promise<any> } = {}
+  const getPortfolio = (addresses: string[]): Promise<any> => {
+    const key = addresses.join(',')
+    if (!portfolioCache[key]) {
+      portfolioCache[key] = fetch(`https://zerion-api.vercel.app/api/portfolio/${key}`)
+        .then(req => req.json())
+        .then(result => {
+          if (result.success) {
+            return result.value
+          }
+          throw new Error(result.message)
+        })
+    }
+    return portfolioCache[key]
+  }
 
   const createTreasuryLoader = (addresses: string[]) => async () => {
-    const balances = await Promise.all(addresses.map(addrToValue))
-    const totalTreasury = balances.reduce((a: number, b: number) => a + b, 0)
-    return totalTreasury
+    const portfolio = await getPortfolio(addresses)
+    return portfolio.totalValue
   }
 
   const createPortfolioLoader = (addresses: string[], vestingAddresses?: string[]) => async () => {
-    const [portfolio, vestingPortfolio] = await Promise.all([
-      sdk.plugins.getPlugin('zerion').getPortfolio(addresses),
-      vestingAddresses ? sdk.plugins.getPlugin('zerion').getPortfolio(vestingAddresses) : [],
+    const [{ portfolio }, { portfolio: vestingPortfolio }] = await Promise.all([
+      getPortfolio(addresses),
+      vestingAddresses ? getPortfolio(vestingAddresses) : { portfolio: [] },
     ])
+
     return [
       ...portfolio,
       ...vestingPortfolio.map((portfolioItem: any) => ({ ...portfolioItem, vesting: true }))

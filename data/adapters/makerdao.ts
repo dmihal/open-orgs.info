@@ -9,6 +9,21 @@ const vatABI = [
 ]
 
 export async function setup(sdk: Context) {
+  let pausePortfolioPromise: Promise<any> | null
+  const getPausePortfolio = (): Promise<any> => {
+    if (!pausePortfolioPromise) {
+      pausePortfolioPromise = fetch(`https://zerion-api.vercel.app/api/portfolio/${PAUSE_ADDRESS}`)
+        .then(req => req.json())
+        .then(result => {
+          if (result.success) {
+            return result.value
+          }
+          throw new Error(result.error)
+        })
+    }
+    return pausePortfolioPromise
+  }
+
   const getDaiSurplus = async () => {
     const vat = sdk.ethers.getContract(VAT_ADDRESS, vatABI)
     const [dai, sin] = await Promise.all([
@@ -23,20 +38,20 @@ export async function setup(sdk: Context) {
   const getTreasuryInUSD = async () => {
     const [daiSurplus, pauseValue] = await Promise.all([
       getDaiSurplus(),
-      sdk.plugins.getPlugin('zerion').getTotalValue(PAUSE_ADDRESS),
+      getPausePortfolio(),
     ])
 
-    return daiSurplus + pauseValue
+    return daiSurplus + pauseValue.totalValue
   }
 
   const getPortfolio = async () => {
     const [pausePortfolio, daiSurplus] = await Promise.all([
-      sdk.plugins.getPlugin('zerion').getPortfolio(PAUSE_ADDRESS),
+      getPausePortfolio(),
       getDaiSurplus(),
     ])
 
     return [
-      ...pausePortfolio,
+      ...pausePortfolio.portfolio,
       {
         address: '0x6b175474e89094c44da98b954eedeac495271d0f',
         amount: daiSurplus,

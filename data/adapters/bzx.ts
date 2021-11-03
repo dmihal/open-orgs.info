@@ -4,15 +4,30 @@ import { getSnapshotProposals } from './snapshot'
 const TREASURY_ADDRESS = '0xfedC4dD5247B93feb41e899A09C44cFaBec29Cbc'
 
 export async function setup(sdk: Context) {
+  let treasuryPortfolioPromise: Promise<any> | null
+  const getTresuryPortfolio = (): Promise<any> => {
+    if (!treasuryPortfolioPromise) {
+      treasuryPortfolioPromise = fetch(`https://zerion-api.vercel.app/api/portfolio/${TREASURY_ADDRESS}`)
+        .then(req => req.json())
+        .then(result => {
+          if (result.success) {
+            return result.value
+          }
+          throw new Error(result.error)
+        })
+    }
+    return treasuryPortfolioPromise
+  }
+
   const getTreasuryInUSD = async () => {
-    const treasuryValue = await sdk.plugins.getPlugin('zerion').getTotalValue(TREASURY_ADDRESS)
-    return treasuryValue
+    const treasury = await getTresuryPortfolio()
+    return treasury.totalValue
   }
 
   const getPortfolio = async () => {
-    const portfolio = await sdk.plugins.getPlugin('zerion').getPortfolio(TREASURY_ADDRESS)
+    const portfolio = await getTresuryPortfolio()
 
-    const withVesting = portfolio.map((item: any) => item.symbol === 'vBZRX' ? {
+    const withVesting = portfolio.portfolio.map((item: any) => item.symbol === 'vBZRX' ? {
         ...item,
         vesting: true,
       } : item)

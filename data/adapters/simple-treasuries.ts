@@ -241,7 +241,13 @@ const orgs: Org[] = [
   },
   {
     id: 'olympus',
-    addresses: ['0x31F8Cc382c9898b273eff4e0b7626a6987C846E8'],
+    addresses: [
+      '0x31F8Cc382c9898b273eff4e0b7626a6987C846E8',
+      '0x34d7d7aaf50ad4944b70b320acb24c95fa2def7c', // OHM-DAI LP
+      '0x2dce0dda1c2f98e0f171de8333c3c6fe1bbf4877', // OHM-FRAX LP
+      '0xfffae4a0f4ac251f4705717cd24cadccc9f33e06', // OHM-WETH LP
+      '0xfdf12d1f85b5082877a6e070524f50f6c84faa6b', // OHM-LUSD LP
+    ],
     icon: 'QmbtqUKno2FATf4RFPXAvWCamYrRT6UAKurKiNCuMCJw1J',
     snapshotId: 'olympusdao.eth',
     metadata: {
@@ -281,7 +287,10 @@ const orgs: Org[] = [
       '0x86626E1BbBd0ce95ED52e0C5E19f371a6640B591', // grants DAO
       '0x99f4176ee457afedffcb1839c7ab7a030a5e4a92', // treasury council
     ],
-    nativeTokens: ['0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f'],
+    nativeTokens: [
+      '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f', // SNX
+      '0x072f14b85add63488ddad88f855fda4a99d6ac9b' // SNX-ETH LP
+    ],
     icon: 'QmYPqFXTqYcynD5hT9sZbsoPZXbvjSfL7WWQPL7EwYAyE5',
     metadata: {
       name: 'Synthetix',

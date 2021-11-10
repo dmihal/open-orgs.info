@@ -100,6 +100,22 @@ const orgs: Org[] = [
     },
   },
   {
+    id: 'ens',
+    addresses: [
+      '0x283Af0B28c62C092C9727F1Ee09c02CA627EB7F5', // Registrar controller (fee collection)
+      '0xCF60916b6CB4753f58533808fA610FcbD4098Ec0', // Gnosis safe
+      '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7', // Timelock
+    ],
+    vestingAddresses: ['0xd7A029Db2585553978190dB5E85eC724Aa4dF23f'],
+    icon: 'QmVmFQeYcLjeEm2fFhyyS762KytMQQhwdEXyGXAid1Rf8B',
+    snapshotId: 'ens.eth',
+    metadata: {
+      name: 'ENS',
+      website: 'https://ens.domains',
+      governanceForum: '',
+    },
+  },
+  {
     id: 'gitcoin',
     addresses: [
       '0x57a8865cfB1eCEf7253c27da6B4BC3dAEE5Be518', // Treasury

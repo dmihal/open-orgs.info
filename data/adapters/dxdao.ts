@@ -6,7 +6,7 @@ const USDC_TOKEN = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48'
 
 export async function setup(sdk: Context) {
   let treasuryPortfolioPromise: Promise<any> | null
-  const getTresuryPortfolio = (): Promise<any> => {
+  const getTreasuryPortfolio = (): Promise<any> => {
     if (!treasuryPortfolioPromise) {
       treasuryPortfolioPromise = fetch(`https://zerion-api.vercel.app/api/portfolio/${TREASURY_ADDRESS}`)
         .then(req => req.json())
@@ -58,7 +58,7 @@ export async function setup(sdk: Context) {
 
   const getTreasuryInUSD = async () => {
     const [treasury, { totalValue: bondingCurveVal }] = await Promise.all([
-      getTresuryPortfolio(),
+      getTreasuryPortfolio(),
       getBondingCurve(),
     ])
 
@@ -67,7 +67,7 @@ export async function setup(sdk: Context) {
 
   const getPortfolio = async () => {
     const [{ portfolio: reservePortfolio }, { portfolio: bondingCurvePortfolio }] = await Promise.all([
-      getTresuryPortfolio(),
+      getTreasuryPortfolio(),
       getBondingCurve(),
     ])
 

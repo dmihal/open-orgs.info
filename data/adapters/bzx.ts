@@ -7,7 +7,7 @@ const NATIVE_TOKENS = ['0x56d811088235f11c8920698a204a5010a788f4b3', '0xb72b3190
 
 export async function setup(sdk: Context) {
   let treasuryPortfolioPromise: Promise<any> | null
-  const getTresuryPortfolio = (): Promise<any> => {
+  const getTreasuryPortfolio = (): Promise<any> => {
     if (!treasuryPortfolioPromise) {
       treasuryPortfolioPromise = fetch(`https://zerion-api.vercel.app/api/portfolio/${TREASURY_ADDRESS}`)
         .then(req => req.json())
@@ -22,12 +22,12 @@ export async function setup(sdk: Context) {
   }
 
   const getTreasuryInUSD = async () => {
-    const treasury = await getTresuryPortfolio()
+    const treasury = await getTreasuryPortfolio()
     return treasury.totalValue
   }
 
   const getPortfolio = async () => {
-    const { portfolio } = await getTresuryPortfolio()
+    const { portfolio } = await getTreasuryPortfolio()
 
     const withVesting = portfolio
       .map((portfolioItem: any) => (

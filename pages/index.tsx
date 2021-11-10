@@ -1,15 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NextPage, GetStaticProps } from 'next'
 import 'data/adapters'
 import sdk from 'data/sdk'
 import List from 'components/List'
 import SocialTags from 'components/SocialTags'
+import Toolbar from 'components/Toolbar'
+import { PortfolioItem } from 'data/adapters/types'
 
 interface HomeProps {
-  data: any[]
+  data: {
+    id: string;
+    name: string;
+    results: {
+      currentTreasuryUSD: number;
+      currentLiquidTreasuryUSD: number;
+      currentTreasuryPortfolio: PortfolioItem[];
+      recentProposals: any[];
+    };
+    metadata: any;
+  }[]
 }
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
+  const [showNative, setshowNative] = useState(true);
+
   return (
     <div className="container">
       <SocialTags />
@@ -22,18 +36,12 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
           What's on their balance sheets?
         </p>
 
-        <div>
-          <a
-            href="https://twitter.com/share?ref_src=twsrc%5Etfw"
-            className="twitter-share-button"
-            data-show-count="true"
-          >
-            Tweet
-          </a>
-          <script async src="https://platform.twitter.com/widgets.js"></script>
-        </div>
+        <Toolbar
+          showNative={showNative}
+          onShowNativeChange={setshowNative}
+        />
 
-        <List data={data} />
+        <List data={data} showNative={showNative} />
       </main>
 
       <style jsx>{`

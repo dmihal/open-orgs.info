@@ -4,6 +4,8 @@ const TREASURY_ADDRESS = '0x42cd8312D2BCe04277dD5161832460e95b24262E'
 const VESTING_ADDRESS = '0x21950E281bDE1714ffd1062ed17c56D4D8de2359'
 const SCUSDC_TOKEN = '0x391a437196c81eea7bbbbd5ed4df6b49de4f5c96'
 
+const NATIVE_TOKENS = ['0x0cec1a9154ff802e7934fc916ed7ca50bde6844e']
+
 export async function setup(sdk: Context) {
   let portfolioCache: { [address: string]: Promise<any> } = {}
   const getPortfolio = (key: string): Promise<any> => {
@@ -52,8 +54,8 @@ export async function setup(sdk: Context) {
     ])
 
     return [
-      ...treasury.portfolio,
-      ...vesting.portfolio.map((portfolioItem: any) => ({ ...portfolioItem, vesting: true })),
+      ...treasury.portfolio.map((portfolioItem: any) => ({ ...portfolioItem,  native: NATIVE_TOKENS.includes(portfolioItem.address) })),
+      ...vesting.portfolio.map((portfolioItem: any) => ({ ...portfolioItem,  native: NATIVE_TOKENS.includes(portfolioItem.address), vesting: true })),
       {
         address: SCUSDC_TOKEN,
         amount: scusdc,
@@ -62,6 +64,8 @@ export async function setup(sdk: Context) {
         name: 'PoolTogether USDC Sponsorship',
         symbol: 'ScUSDC',
         icon: null,
+        native: false,
+        vesting: false
       },
     ]
   }

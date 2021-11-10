@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import { PortfolioItem } from 'data/adapters/types';
+import React, { useMemo, useState } from 'react';
+import { filteredTreasuryValue } from 'utils';
 import Row from './Row';
 
 interface ListProps {
-  data: any[];
+  data: {
+    id: string;
+    name: string;
+    results: {
+      currentTreasuryUSD: number;
+      currentLiquidTreasuryUSD: number;
+      currentTreasuryPortfolio: PortfolioItem[];
+      recentProposals: any[];
+    };
+    metadata: any;
+  }[];
+  showNative: boolean;
 }
 
-const sortTotal = (a: any, b: any) => b.results.currentTreasuryUSD - a.results.currentTreasuryUSD
-const sortLiquid = (a: any, b: any) => b.results.currentLiquidTreasuryUSD - a.results.currentLiquidTreasuryUSD
+const sortTreasury = (a: any, b: any, includeNative: boolean, includeVesting: boolean) => filteredTreasuryValue(b, includeNative, includeVesting) - filteredTreasuryValue(a, includeNative, includeVesting)
 
-const List: React.FC<ListProps> = ({ data }) => {
+const List: React.FC<ListProps> = ({ data, showNative }) => {
   const [sort, setSort] = useState('total');
-  const sortedData = data.sort(sort === 'total' ? sortTotal : sortLiquid);
+
+  const sortedData = useMemo(() => data.sort((a, b) => sortTreasury(a,b, showNative, sort === 'total')), [data, showNative, sort]);
 
   return (
     <div className="list">
@@ -24,8 +37,8 @@ const List: React.FC<ListProps> = ({ data }) => {
         </div>
       </div>
 
-      {sortedData.map((protocol: any) => (
-        <Row protocol={protocol} key={protocol.id} />
+      {sortedData.map((protocol) => (
+        <Row protocol={protocol} key={protocol.id} showNative={showNative} />
       ))}
 
       <style jsx>{`

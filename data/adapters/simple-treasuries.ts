@@ -6,6 +6,7 @@ interface Org {
   icon?: string
   addresses: string[]
   vestingAddresses?: string[]
+  nativeTokens?: string[]
   iconType?: string
   snapshotId?: string
   governanceSite?: string
@@ -17,6 +18,7 @@ const orgs: Org[] = [
   {
     id: 'alchemix',
     addresses: ['0x8392f6669292fa56123f71949b52d883ae57e225'],
+    nativeTokens: ['0xdbdb4d16eda451d0503b854cf79d55697f90c8df'],
     icon: 'QmSuSUcAvGkxkJ7n5RxnDyqXUchAjXMwTmNioz2xzXVfxo',
     iconType: 'image/jpeg',
     snapshotId: 'alchemixstakers.eth',
@@ -31,6 +33,7 @@ const orgs: Org[] = [
   {
     id: 'api3',
     addresses: ['0xe7aF7c5982e073aC6525a34821fe1B3e8E432099'],
+    nativeTokens: ['0x0b38210ea11411557c13457D4dA7dC6ea731B88a'],
     icon: 'QmVp2hVgfD8sQRFosydPsNAVmttno5tRhun44YiXagNeGX',
     iconType: 'image/jpeg',
     metadata: {
@@ -48,6 +51,7 @@ const orgs: Org[] = [
       '0x8de82c4c968663a0284b01069dde6ef231d0ef9b',
       '0xb65cef03b9b89f99517643226d76e286ee999e77',
     ],
+    nativeTokens: ['0x3472A5A71965499acd81997a54BBA8D852C6E53d'],
     icon: 'QmSraKiNmctuShFEqgGmLVamKuwZC6TFs26R27959ugExn',
     iconType: 'image/png',
     snapshotId: 'badgerdao.eth',
@@ -65,6 +69,7 @@ const orgs: Org[] = [
       '0xb618F903ad1d00d6F7b92f5b0954DcdC056fC533', // ecosystem fund
       '0xce88686553686DA562CE7Cea497CE749DA109f9F', // protocol fee collector
     ],
+    nativeTokens: ['0xba100000625a3754423978a60c9317c58a424e3d'],
     icon: 'Qma9agewDVEhZjnLrY2aWy3ZHvYmUtZ5uXM3tCHZu5eDM2',
     metadata: {
       name: 'Balancer',
@@ -77,6 +82,7 @@ const orgs: Org[] = [
   {
     id: 'barnbridge',
     addresses: ['0x4cAE362D7F227e3d306f70ce4878E245563F3069'],
+    nativeTokens: ['0x0391D2021f89DC339F60Fff84546EA23E337750f'],
     icon: 'QmWD4Eg6AdYmyAb9aSfELP7L4cU2uTFYoejHVsWjerYWZo',
     metadata: {
       name: 'BarnBridge',
@@ -90,6 +96,7 @@ const orgs: Org[] = [
     id: 'compound',
     addresses: ['0x3d9819210a31b4961b30ef54be2aed79b9c9cd3b'],
     vestingAddresses: ['0x2775b1c75658Be0F640272CCb8c72ac986009e38'],
+    nativeTokens: ['0xc00e94cb662c3520282e6f5717214004a7f26888'],
     icon: 'QmZpZsg829EnBxE2MPZykZpAfsxyRsu6EuGbtfTkf2EFNj',
     metadata: {
       name: 'Compound',
@@ -107,6 +114,7 @@ const orgs: Org[] = [
       '0xFe89cc7aBB2C4183683ab71653C4cdc9B02D44b7', // Timelock
     ],
     vestingAddresses: ['0xd7A029Db2585553978190dB5E85eC724Aa4dF23f'],
+    nativeTokens: ['0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72'],
     icon: 'QmVmFQeYcLjeEm2fFhyyS762KytMQQhwdEXyGXAid1Rf8B',
     snapshotId: 'ens.eth',
     metadata: {
@@ -122,6 +130,7 @@ const orgs: Org[] = [
       '0xde21F729137C5Af1b01d73aF1dC21eFfa2B8a0d6', // Grants
     ],
     vestingAddresses: ['0x44aa9c5a034c1499ec27906e2d427b704b567ffe'],
+    nativeTokens: ['0xde30da39c46104798bb5aa3fe8b9e0e1f348163f'],
     icon: 'QmR8nFrnSu7Mby5tdPPdUrTZttaK7L3TVsZheuwZ1KPUCT',
     snapshotId: 'gitcoindao.eth',
     metadata: {
@@ -133,6 +142,7 @@ const orgs: Org[] = [
   {
     id: 'index-coop',
     addresses: ['0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC'],
+    nativeTokens: ['0x0954906da0Bf32d5479e25f46056d22f08464cab'],
     icon: 'QmRU38pAray7rYt4irRswPAK6E6nxiTiXZ1bAp8fr3CcW2',
     iconType: 'image/png',
     snapshotId: 'index-coop.eth',
@@ -157,6 +167,7 @@ const orgs: Org[] = [
   {
     id: 'lido',
     addresses: ['0x3e40d73eb977dc6a537af587d48316fee66e9c8c'],
+    nativeTokens: ['0x5a98fcbea516cf06857215779fd812ca3bef1b32'],
     icon: 'QmcsGcopqrVyzTLXETtecJuhqxqxbzUvuFMqBd27yFKCMt',
     metadata: {
       name: 'Lido',
@@ -168,6 +179,7 @@ const orgs: Org[] = [
   {
     id: 'linkswap',
     addresses: ['0xE69A81b96FBF5Cb6CAe95d2cE5323Eff2bA0EAE4'],
+    nativeTokens: ['0x28cb7e841ee97947a86B06fA4090C8451f64c0be'],
     icon: 'QmdAhG1qWuW6wEcuW29ZjAvqPz8grSYHsR7HZJLSkqkGQ5',
     snapshotId: 'yflink.eth',
     metadata: {
@@ -194,6 +206,7 @@ const orgs: Org[] = [
       '0xfcf455d6eb48b3289a712c0b3bc3c7ee0b0ee4c6', // Funding subDAO
       '0x67905d3e4fec0c85dce68195f66dc8eb32f59179', // Asset Management subDAO
     ],
+    nativeTokens: ['0xa3BeD4E1c75D00fa6f4E5E6922DB7261B5E9AcD2'],
     icon: 'QmTkxsvMnSPb7A2bPUxA4uJRwJefkyzFgGar5NVxV5UJjr',
     metadata: {
       name: 'mStable',
@@ -206,6 +219,7 @@ const orgs: Org[] = [
   {
     id: 'nexus',
     addresses: ['0x586b9b2F8010b284A0197f392156f1A7Eb5e86e9'],
+    nativeTokens: ['0xd7c49cee7e9188cca6ad8ff264c1da2e69d4cf3b', '0x0d438f3b5175bebc262bf23753c1e53d03432bde'],
     icon: 'QmWA5VaHWMH96mLmoaLKaxKVf86GLUJQVBp6BfaUoLH81g',
     metadata: {
       name: 'Nexus Mutual',
@@ -228,7 +242,13 @@ const orgs: Org[] = [
   },
   {
     id: 'olympus',
-    addresses: ['0x31F8Cc382c9898b273eff4e0b7626a6987C846E8'],
+    addresses: [
+      '0x31F8Cc382c9898b273eff4e0b7626a6987C846E8',
+      '0x34d7d7aaf50ad4944b70b320acb24c95fa2def7c', // OHM-DAI LP
+      '0x2dce0dda1c2f98e0f171de8333c3c6fe1bbf4877', // OHM-FRAX LP
+      '0xfffae4a0f4ac251f4705717cd24cadccc9f33e06', // OHM-WETH LP
+      '0xfdf12d1f85b5082877a6e070524f50f6c84faa6b', // OHM-LUSD LP
+    ],
     icon: 'QmbtqUKno2FATf4RFPXAvWCamYrRT6UAKurKiNCuMCJw1J',
     snapshotId: 'olympusdao.eth',
     metadata: {
@@ -239,6 +259,7 @@ const orgs: Org[] = [
   {
     id: 'piedao',
     addresses: ['0x3bcf3db69897125aa61496fc8a8b55a5e3f245d5'],
+    nativeTokens: ['0xad32A8e6220741182940c5aBF610bDE99E737b2D'],
     icon: 'QmahuQPfbqJEE9tXZKfubWPviy5wxesdfBbdUXhf8JRcN4',
     snapshotId: 'piedao',
     metadata: {
@@ -250,6 +271,7 @@ const orgs: Org[] = [
   {
     id: 'sushi',
     addresses: ['0xe94b5eec1fa96ceecbd33ef5baa8d00e4493f4f3'],
+    nativeTokens: ['0x6b3595068778dd592e39a122f4f5a5cf09c90fe2', '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272'],
     icon: 'QmVAko4auvE2NDr8kfnovVqTqujrJ69YrUZQFPZeREMWk5',
     snapshotId: 'sushigov.eth',
     metadata: {
@@ -266,6 +288,10 @@ const orgs: Org[] = [
       '0x86626E1BbBd0ce95ED52e0C5E19f371a6640B591', // grants DAO
       '0x99f4176ee457afedffcb1839c7ab7a030a5e4a92', // treasury council
     ],
+    nativeTokens: [
+      '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f', // SNX
+      '0x072f14b85add63488ddad88f855fda4a99d6ac9b' // SNX-ETH LP
+    ],
     icon: 'QmYPqFXTqYcynD5hT9sZbsoPZXbvjSfL7WWQPL7EwYAyE5',
     metadata: {
       name: 'Synthetix',
@@ -279,6 +305,7 @@ const orgs: Org[] = [
     id: 'tornado',
     addresses: ['0x5efda50f22d34F262c29268506C5Fa42cB56A1Ce'],
     vestingAddresses: ['0x179f48C78f57A3A78f0608cC9197B8972921d1D2'],
+    nativeTokens: ['0x77777feddddffc19ff86db637967013e6c6a116c'],
     icon: 'QmeUzPPCdpqEYArWyMdUVZJk4GUmuR4TAkK6U4eb9vZDPa',
     metadata: {
       name: 'Tornado Cash',
@@ -299,6 +326,7 @@ const orgs: Org[] = [
       '0x4b4e140d1f131fdad6fb59c13af796fd194e4135',
       '0x3d30b1ab88d487b0f3061f40de76845bec3f1e94',
     ],
+    nativeTokens: ["0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"],
     icon: 'QmPXoiG66a9gCDX1NX51crWV7UAijoFd5wycHrfRKM6Y1n',
     metadata: {
       name: 'Uniswap',
@@ -337,6 +365,7 @@ const orgs: Org[] = [
       '0x205cc7463267861002b27021c7108bc230603d0f', // stakedDPI
       '0xd67c05523d8ec1c60760fd017ef006b9f6e496d0', // randomHoldings
     ],
+    nativeTokens: ['0x0AaCfbeC6a24756c20D41914F2caba817C0d8521'],
     icon: 'QmcPjtA1Q9QhnAeruXkrsYU3HZ5b8sm3eU78VUjHDXhior',
     iconType: 'image/png',
     snapshotId: 'yam',
@@ -354,6 +383,7 @@ const orgs: Org[] = [
       '0x93A62dA5a14C80f265DAbC077fCEE437B1a0Efde', // treasury.ychad.eth
       '0xd42e1cb8b98382df7db43e0f09dfe57365659d16', // DSProxy
     ],
+    nativeTokens: ['0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e'],
     icon: 'QmYGdvDA6jM5AV1yBvQKUAz74wqGeBUwVohBWEgbwqXpjk',
     snapshotId: 'yearn',
     metadata: {
@@ -387,15 +417,17 @@ export async function setup(sdk: Context) {
     return portfolio.totalValue
   }
 
-  const createPortfolioLoader = (addresses: string[], vestingAddresses?: string[]) => async () => {
+  const createPortfolioLoader = (addresses: string[], vestingAddresses?: string[], nativeTokens: string[] = []) => async () => {
     const [{ portfolio }, { portfolio: vestingPortfolio }] = await Promise.all([
       getPortfolio(addresses),
       vestingAddresses ? getPortfolio(vestingAddresses) : { portfolio: [] },
     ])
 
+    const nativeTokensLower = nativeTokens.map(addr => addr.toLowerCase())
     return [
-      ...portfolio,
-      ...vestingPortfolio.map((portfolioItem: any) => ({ ...portfolioItem, vesting: true }))
+      ...portfolio.map((portfolioItem: any) => ({ ...portfolioItem, native: nativeTokensLower.includes(portfolioItem.address) })),
+      ...vestingPortfolio
+          .map((portfolioItem: any) => ({ ...portfolioItem, native: nativeTokensLower.includes(portfolioItem.address), vesting: true }))
     ]
   }
 
@@ -412,7 +444,7 @@ export async function setup(sdk: Context) {
       queries: {
         currentTreasuryUSD: createTreasuryLoader([...org.addresses, ...(org.vestingAddresses || [])]),
         currentLiquidTreasuryUSD: createTreasuryLoader(org.addresses),
-        currentTreasuryPortfolio: createPortfolioLoader(org.addresses, org.vestingAddresses),
+        currentTreasuryPortfolio: createPortfolioLoader(org.addresses, org.vestingAddresses, org.nativeTokens),
         recentProposals,
       },
       metadata: {

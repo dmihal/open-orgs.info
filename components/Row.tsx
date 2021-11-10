@@ -4,19 +4,35 @@ import ReactGA from 'react-ga4';
 import { ChevronDown, ChevronUp } from 'react-feather';
 import DetailsCard from './DetailsCard';
 import RowName from './RowName';
+import { filteredTreasuryValue } from 'utils';
+import { PortfolioItem } from 'data/adapters/types';
 
 interface RowProps {
-  protocol: any;
+  protocol: {
+    id: string;
+    name: string;
+    results: {
+      currentTreasuryUSD: number;
+      currentLiquidTreasuryUSD: number;
+      currentTreasuryPortfolio: PortfolioItem[];
+      recentProposals: any[];
+    };
+    metadata: any;
+  };
+  showNative: boolean
 }
 
 const toggle = (isOpen: boolean) => !isOpen;
 
 const cardHeight = 600;
 
-const Row: React.FC<RowProps> = ({ protocol }) => {
+const Row: React.FC<RowProps> = ({ protocol, showNative }) => {
   const [open, setOpen] = useState(false);
 
   // const isApp = protocol.category !== 'l1' && protocol.category !== 'l2';
+
+  const currentTreasury = filteredTreasuryValue(protocol, showNative, true)
+  const currentLiquidTreasury = filteredTreasuryValue(protocol, showNative, false)
 
   return (
     <Fragment>
@@ -42,7 +58,7 @@ const Row: React.FC<RowProps> = ({ protocol }) => {
           subtitle={protocol.metadata.subtitle}
         />
         <div className="amount">
-          {protocol.results.currentTreasuryUSD?.toLocaleString('en-US', {
+          {currentTreasury?.toLocaleString('en-US', {
             style: 'currency',
             currency: 'USD',
             maximumFractionDigits: 0,
@@ -50,7 +66,7 @@ const Row: React.FC<RowProps> = ({ protocol }) => {
           })}
         </div>
         <div className="amount">
-          {protocol.results.currentLiquidTreasuryUSD?.toLocaleString('en-US', {
+          {currentLiquidTreasury?.toLocaleString('en-US', {
             style: 'currency',
             currency: 'USD',
             maximumFractionDigits: 0,
@@ -62,7 +78,7 @@ const Row: React.FC<RowProps> = ({ protocol }) => {
 
       <CSSTransition in={open} timeout={500} unmountOnExit>
         <div className="details-container">
-          <DetailsCard protocol={protocol} />
+          <DetailsCard protocol={protocol} showNative={showNative} />
         </div>
       </CSSTransition>
       <style jsx>{`

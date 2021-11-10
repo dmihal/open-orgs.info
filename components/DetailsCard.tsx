@@ -4,13 +4,25 @@ import Attribute from './Attribute';
 import Button from './Button';
 import TreasuryBar from './TreasuryBar'
 import { portfolioToSections } from 'utils'
+import { PortfolioItem } from 'data/adapters/types';
 
 interface DetailsCardProps {
-  protocol: any;
+  protocol: {
+    id: string;
+    name: string;
+    results: {
+      currentTreasuryUSD: number;
+      currentLiquidTreasuryUSD: number;
+      currentTreasuryPortfolio: PortfolioItem[];
+      recentProposals: any[];
+    };
+    metadata: any;
+  };
+  showNative: boolean
 }
 
-const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
-  const { total, sections } = portfolioToSections(protocol.results.currentTreasuryPortfolio)
+const DetailsCard: React.FC<DetailsCardProps> = ({ protocol, showNative }) => {
+  const { total, sections } = portfolioToSections(protocol.results.currentTreasuryPortfolio, showNative ? {} : { native: false })
 
   return (
     <div className="details-card">

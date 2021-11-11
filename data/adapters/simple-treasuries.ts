@@ -228,7 +228,12 @@ const orgs: Org[] = [
   },
   {
     id: 'olympus',
-    addresses: ['0x31F8Cc382c9898b273eff4e0b7626a6987C846E8'],
+    addresses: [
+      '0x31F8Cc382c9898b273eff4e0b7626a6987C846E8', // Olympus Treasury
+      '0x3df5a355457db3a4b5c744b8623a7721bf56df78', // Convex Allocator
+      '0x0316508a1b5abf1CAe42912Dc2C8B9774b682fFC', // Onsen Allocator
+      '0x0e1177e47151Be72e5992E0975000E73Ab5fd9D4', // Aave Allocator
+    ],
     icon: 'QmbtqUKno2FATf4RFPXAvWCamYrRT6UAKurKiNCuMCJw1J',
     snapshotId: 'olympusdao.eth',
     metadata: {

@@ -6,6 +6,7 @@ interface Org {
   icon?: string
   addresses: string[]
   vestingAddresses?: string[]
+  nativeTokens?: string[]
   iconType?: string
   snapshotId?: string
   governanceSite?: string
@@ -144,6 +145,18 @@ const orgs: Org[] = [
     },
   },
   {
+    id: 'keeper',
+    addresses: ['0x9a67f1940164d0318612b497e8e6038f902a00a4'],
+    nativeTokens: ['0xfa5047c9c78b8877af97bdcb85db743fd7313d4a'],
+    icon: 'QmQ8Fxi73dFhyYb5LncV7133q4XBwXNvR1hK9aW6aHaQWQ',
+    snapshotId: 'rook.eth',
+    metadata: {
+      name: 'KeeperDAO',
+      website: 'https://keeperdao.com',
+      governanceForum: 'https://forum.keeperdao.com',
+    },
+  },
+  {
     id: 'lao',
     addresses: ['0x8f56682a50becb1df2fb8136954f2062871bc7fc'],
     icon: 'QmcBBSvXC4nUQHSRy5BcGvX7RGWyhzeUifyHNR3e4q26T2',
@@ -250,6 +263,18 @@ const orgs: Org[] = [
       name: 'PieDAO',
       website: 'https://piedao.org',
       governanceForum: 'https://forum.piedao.org/',
+    },
+  },
+  {
+    id: 'shapeshift',
+    addresses: ['0x90A48D5CF7343B08dA12E067680B4C6dbfE551Be'],
+    nativeTokens: ['0xc770EEfAd204B5180dF6a14Ee197D99d808ee52d'],
+    icon: 'QmWTua7CSYcgb1YZCZZFQ2CvHxJxFyTK3SC1V86czCBTjL',
+    snapshotId: 'shapeshiftdao.eth',
+    metadata: {
+      name: 'ShapeShift',
+      website: 'https://shapeshift.com',
+      governanceForum: 'https://forum.shapeshift.com',
     },
   },
   {

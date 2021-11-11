@@ -381,7 +381,7 @@ export async function setup(sdk: Context) {
           if (result.success) {
             return result.value
           }
-          throw new Error(result.message)
+          throw new Error(`Request to 'https://zerion-api.vercel.app/api/portfolio/${key}' failed: ${result.message}`)
         })
     }
     return portfolioCache[key]

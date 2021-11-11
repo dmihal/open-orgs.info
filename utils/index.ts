@@ -1,7 +1,10 @@
 import { Section } from 'components/TreasuryBar'
 import { PortfolioItem } from 'data/adapters/types';
 
-export function portfolioToSections(portfolio: PortfolioItem[], filters: {native?: boolean, vesting?: boolean}) {
+export function portfolioToSections(
+  portfolio: PortfolioItem[],
+  filters: {native?: boolean, vesting?: boolean} = {}
+) {
   let total = 0
   let other = 0
   const sections: Section[] = portfolio

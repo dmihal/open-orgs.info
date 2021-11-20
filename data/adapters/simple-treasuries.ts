@@ -116,6 +116,20 @@ const orgs: Org[] = [
     },
   },
   {
+    id: 'fei',
+    addresses: [
+      '0x8d5ed43dca8c2f7dfb20cf7b53cc7e593635d7b9', // Core
+      '0xd51dba7a94e1adea403553a8235c302cebf41a3c', // Timelock
+    ],
+    icon: 'QmaeWtW4HDNCKRMTrtE3kabu2xQDtb5iaZduEEm68F7rqR',
+    snapshotId: 'fei.eth',
+    metadata: {
+      name: 'Fei',
+      website: 'https://fei.money',
+      governanceForum: 'https://tribe.fei.money',
+    },
+  },
+  {
     id: 'index-coop',
     addresses: ['0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC'],
     icon: 'QmcatsG9WgkB6m9vSF3mbgwXFJyG8qSDNsZyi2mEGRk4oa',

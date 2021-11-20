@@ -118,8 +118,7 @@ const orgs: Org[] = [
   {
     id: 'index-coop',
     addresses: ['0x9467cfADC9DE245010dF95Ec6a585A506A8ad5FC'],
-    icon: 'QmRU38pAray7rYt4irRswPAK6E6nxiTiXZ1bAp8fr3CcW2',
-    iconType: 'image/png',
+    icon: 'QmcatsG9WgkB6m9vSF3mbgwXFJyG8qSDNsZyi2mEGRk4oa',
     snapshotId: 'index-coop.eth',
     metadata: {
       name: 'Index Coop',

@@ -63,7 +63,7 @@ const orgs: Org[] = [
   {
     id: 'balancer',
     addresses: [
-      '0xb618F903ad1d00d6F7b92f5b0954DcdC056fC533', // ecosystem fund
+      '0x10A19e7eE7d7F8a52822f6817de8ea18204F2e4f', // ecosystem fund
       '0xce88686553686DA562CE7Cea497CE749DA109f9F', // protocol fee collector
     ],
     icon: 'Qma9agewDVEhZjnLrY2aWy3ZHvYmUtZ5uXM3tCHZu5eDM2',

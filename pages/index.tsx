@@ -95,8 +95,16 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
   );
 };
 
+
+/*
+ * Looking for the data source?
+ *
+ * This site pulls data from the CryptoStats protocol
+ * Visit https://cryptostats.community/discover/treasuries to see the code for these adapters
+ */
 export const getStaticProps: GetStaticProps = async () => {
   const list = sdk.getList('treasuries')
+  await list.fetchAdapters()
 
   const data = await list.executeQueriesWithMetadata([
     'currentTreasuryUSD',

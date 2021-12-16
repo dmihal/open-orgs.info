@@ -113,7 +113,9 @@ export const getStaticProps: GetStaticProps = async () => {
     'recentProposals',
   ])
 
-  return { props: { data }, revalidate: 60 };
+  const filteredData = data.filter(result => result.results.currentTreasuryUSD && result.results.currentLiquidTreasuryUSD)
+
+  return { props: { data: filteredData }, revalidate: 60 };
 };
 
 

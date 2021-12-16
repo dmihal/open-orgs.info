@@ -3,7 +3,6 @@ import sdk from '../sdk'
 import { setup as setupBzx } from './bzx'
 // import { setup as setupDecentralGames } from './decentralgames'
 import { setup as setupDXdao } from './dxdao'
-import { setup as setupENS } from './ens'
 import { setup as setupPoolTogether } from './pooltogether'
 
 const feesList = sdk.getList('treasuries')
@@ -15,5 +14,4 @@ const feesList = sdk.getList('treasuries')
 feesList.addAdaptersWithSetupFunction(setupBzx)
 // feesList.addAdaptersWithSetupFunction(setupDecentralGames)
 feesList.addAdaptersWithSetupFunction(setupDXdao)
-feesList.addAdaptersWithSetupFunction(setupENS)
 feesList.addAdaptersWithSetupFunction(setupPoolTogether)

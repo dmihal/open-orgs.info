@@ -8,7 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@cryptostats/sdk": "^0.0.43",
+    "@cryptostats/sdk": "^0.2.0",
     "@types/socket.io-client": "^1.4.36",
     "next": "latest",
     "next-images": "^1.7.0",

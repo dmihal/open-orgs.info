@@ -145,6 +145,7 @@ export default ProtocolDetails;
 
 export const getStaticProps: GetStaticProps<OrgDetailsProps> = async ({ params }) => {
   const list = sdk.getList('treasuries')
+  await list.fetchAdapters()
   const adapter = list.getAdapter(params!.id.toString())
   if (!adapter) {
     throw new Error(`Protocol ${params!.id.toString()} not found`)
@@ -166,6 +167,7 @@ export const getStaticProps: GetStaticProps<OrgDetailsProps> = async ({ params }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const list = sdk.getList('treasuries')
+  await list.fetchAdapters()
   const ids = list.adapters.map((adapter: Adapter) => adapter.id)
 
   return {

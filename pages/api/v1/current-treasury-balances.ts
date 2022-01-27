@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import 'data/adapters'
 import sdk from 'data/sdk'
 
 // const sort = (a: any, b: any) => b.treasury - a.treasury

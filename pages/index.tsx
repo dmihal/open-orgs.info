@@ -1,6 +1,5 @@
 import React from 'react'
 import { NextPage, GetStaticProps } from 'next'
-import 'data/adapters'
 import sdk from 'data/sdk'
 import List from 'components/List'
 import SocialTags from 'components/SocialTags'

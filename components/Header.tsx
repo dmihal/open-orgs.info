@@ -5,29 +5,32 @@ const Header = () => {
     <header>
       <ul className="header-links">
         <li className="header-link">
-          <div>open-orgs.info</div>
+          <div>openorgs.info</div>
         </li>
         <li className="header-link">
           <a href="https://cryptofees.info/">cryptofees.info</a>
         </li>
         <li className="header-link hideable">
+          <a href="https://moneyprinter.info/">moneyprinter.info</a>
+        </li>
+        <li className="header-link hideable">
           <a href="https://ethburned.info/">ethburned.info</a>
         </li>
         <li className="header-link hideable">
-          <a href="https://money-movers.info/">money-movers.info</a>
+          <a href="https://l2fees.info/">l2fees.info</a>
         </li>
         <li className="header-link">
           <a>More</a>
 
           <ul className="dropdown">
             <li className="header-link showable">
+              <a href="https://moneyprinter.info/">moneyprinter.info</a>
+            </li>
+            <li className="header-link showable">
               <a href="https://ethburned.info/">ethburned.info</a>
             </li>
             <li className="header-link showable">
               <a href="https://money-movers.info/">money-movers.info</a>
-            </li>
-            <li className="header-link">
-              <a href="https://stakers.info/">stakers.info</a>
             </li>
             <li className="header-link">
               <a href="https://ethereumnodes.com/">ethereumnodes.com</a>

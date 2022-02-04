@@ -4,11 +4,9 @@ const Footer: React.FC = () => {
   return (
     <footer>
       <div>Data updates continuously</div>
+
       <div>
-        Created by{' '}
-        <a href="https://twitter.com/dmihal" target="twitter">
-          David Mihal
-        </a>
+        Powered by <a href="https://cryptostats.community">CryptoStats</a>
       </div>
 
       <div>
@@ -17,6 +15,8 @@ const Footer: React.FC = () => {
         <a href="https://cryptofees.info">cryptofees.info</a>
         {' | '}
         <a href="https://ethburned.info">ethburned.info</a>
+        {' | '}
+        <a href="https://moneyprinter.info">moneyprinter.info</a>
         {' | '}
         <a href="https://money-movers.info">money-movers.info</a>
         {' | '}

@@ -46,7 +46,7 @@ const DetailsCard: React.FC<DetailsCardProps> = ({ protocol }) => {
         </Attribute>
       )}
 
-      {protocol.results.recentProposals.length > 0 && (
+      {(protocol.results.recentProposals || []).length > 0 && (
         <Attribute title="Most recent proposal">
           <a href={protocol.results.recentProposals[0].link} target="gov" className="proposalLink">
             {protocol.results.recentProposals[0].title}

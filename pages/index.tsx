@@ -102,19 +102,19 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
  * Visit https://cryptostats.community/discover/treasuries to see the code for these adapters
  */
 export const getStaticProps: GetStaticProps = async () => {
-  const list = sdk.getList('treasuries')
-  await list.fetchAdapters()
+  const list = sdk.getCollection('treasuries');
+  await list.fetchAdapters();
 
   const data = await list.executeQueriesWithMetadata([
     'currentTreasuryUSD',
     'currentLiquidTreasuryUSD',
     'currentTreasuryPortfolio',
     'recentProposals',
-  ])
+  ], { allowMissingQuery: true, timeout: 20 * 1000 });
 
   const filteredData = data.filter(result => {
     for (const query in result.errors) {
-      console.warn(result.errors[query])
+      console.warn(query, result.errors[query])
     }
     return result.results.currentTreasuryUSD && result.results.currentLiquidTreasuryUSD
   });

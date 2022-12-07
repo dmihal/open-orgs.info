@@ -19,6 +19,11 @@ interface OrgDetailsProps {
 }
 
 export const ProtocolDetails: NextPage<OrgDetailsProps> = ({ portfolio, recentProposals, metadata }) => {
+  if (!metadata) {
+    console.warn('Missing metadata');
+    return null;
+  }
+
   const { total, sections } = portfolioToSections(portfolio)
 
   return (
@@ -158,6 +163,10 @@ export const getStaticProps: GetStaticProps<OrgDetailsProps, { id: string }> = a
       adapter.query('recentProposals'),
       adapter.getMetadata(),
     ]);
+
+    if (!metadata) {
+      throw new Error(`Org ${params!.id} not found`);
+    }
 
     return {
       props: { treasury, liquidTreasury, portfolio, recentProposals, metadata },

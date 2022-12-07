@@ -142,35 +142,43 @@ export const ProtocolDetails: NextPage<OrgDetailsProps> = ({ portfolio, recentPr
 
 export default ProtocolDetails;
 
-export const getStaticProps: GetStaticProps<OrgDetailsProps> = async ({ params }) => {
-  const list = sdk.getList('treasuries')
+export const getStaticProps: GetStaticProps<OrgDetailsProps, { id: string }> = async ({ params }) => {
+  const list = sdk.getCollection('treasuries');
   await list.fetchAdapters()
-  const adapter = list.getAdapter(params!.id.toString())
+  const adapter = list.getAdapter(params!.id);
   if (!adapter) {
-    throw new Error(`Protocol ${params!.id.toString()} not found`)
+    throw new Error(`Protocol ${params!.id} not found`);
   }
 
-  const [treasury, liquidTreasury, portfolio, recentProposals, metadata] = await Promise.all([
-    adapter.query('currentTreasuryUSD'),
-    adapter.query('currentLiquidTreasuryUSD'),
-    adapter.query('currentTreasuryPortfolio'),
-    adapter.query('recentProposals'),
-    adapter.getMetadata(),
-  ])
+  try {
+    const [treasury, liquidTreasury, portfolio, recentProposals, metadata] = await Promise.all([
+      adapter.query('currentTreasuryUSD'),
+      adapter.query('currentLiquidTreasuryUSD'),
+      adapter.query('currentTreasuryPortfolio'),
+      adapter.query('recentProposals'),
+      adapter.getMetadata(),
+    ]);
 
-  return {
-    props: { treasury, liquidTreasury, portfolio, recentProposals, metadata },
-    revalidate: 60,
+    return {
+      props: { treasury, liquidTreasury, portfolio, recentProposals, metadata },
+      revalidate: 15 * 60,
+    };
+  } catch (e) {
+    console.warn(params!.id, e);
+    return {
+      notFound: true,
+      revalidate: 15 * 60,
+    };
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const list = sdk.getList('treasuries')
+  const list = sdk.getCollection('treasuries')
   await list.fetchAdapters()
   const ids = list.adapters.map((adapter: Adapter) => adapter.id)
 
   return {
     paths: ids.map((id: string) => ({ params: { id } })),
-    fallback: false,
+    fallback: true,
   }
 }

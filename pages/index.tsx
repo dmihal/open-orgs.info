@@ -114,7 +114,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const filteredData = data.filter(result => {
     for (const query in result.errors) {
-      console.warn(query, result.errors[query])
+      console.warn(result.id, result.errors[query])
     }
     return result.results.currentTreasuryUSD && result.results.currentLiquidTreasuryUSD
   });

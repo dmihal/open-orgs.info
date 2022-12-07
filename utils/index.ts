@@ -1,6 +1,10 @@
 import { Section } from 'components/TreasuryBar'
 
-export function portfolioToSections(portfolio: any[]) {
+export function portfolioToSections(portfolio?: any[]) {
+  if (!portfolio) {
+    return { total: 0, sections: [] };
+  }
+
   let total = 0
   let other = 0
   const sections: Section[] = portfolio

@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import Head from 'next/head';
-import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
-import ReactGA from 'react-ga4';
-import PlausibleProvider from 'next-plausible'
-import Header from 'components/Header'
-import Footer from 'components/Footer'
+import React, { useEffect } from "react";
+import Head from "next/head";
+import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import ReactGA from "react-ga4";
+import PlausibleProvider from "next-plausible";
+import { Header } from "@cryptostats/header.header";
+import Footer from "components/Footer";
 
-ReactGA.initialize('G-MB00YK06P7');
+ReactGA.initialize("G-MB00YK06P7");
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
@@ -35,7 +35,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       </Head>
 
       <PlausibleProvider domain="open-orgs.info">
-        <Header />
+        <Header siteName="openorgs.info" />
 
         <Component {...pageProps} />
 
@@ -58,7 +58,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         body {
           padding: 0;
           margin: 0;
-          font-family: 'sofia-pro', sans-serif;
+          font-family: "sofia-pro", sans-serif;
           background: #f9fafc;
           color: #091636;
         }

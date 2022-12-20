@@ -30,6 +30,7 @@ const Footer: React.FC = () => {
           border-top: 1px solid lightGray;
           text-align: center;
           padding: 2rem 0;
+          margin-top:2rem;
         }
         footer > * {
           margin-bottom: 0.5em;

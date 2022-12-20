@@ -6,6 +6,7 @@ import ReactGA from "react-ga4";
 import PlausibleProvider from "next-plausible";
 import { Header } from "@cryptostats/header.header";
 import Footer from "components/Footer";
+import { Sponsor } from "@cryptostats/header.sponsor_cta";
 
 ReactGA.initialize("G-MB00YK06P7");
 
@@ -38,7 +39,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         <Header siteName="openorgs.info" />
 
         <Component {...pageProps} />
-
+        <Sponsor/>
         <Footer />
       </PlausibleProvider>
 
